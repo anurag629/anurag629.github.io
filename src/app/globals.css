@@ -1,26 +1,221 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  body {
+    @apply bg-paper text-ink antialiased;
+    background-image:
+      linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  ::selection {
+    @apply bg-accent-yellow/30;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Paper card effect */
+  .paper-card {
+    @apply bg-paper-cream rounded-sm shadow-paper relative;
+    background-image:
+      linear-gradient(rgba(0,0,0,0.01) 1px, transparent 1px);
+    background-size: 100% 28px;
+  }
+
+  .paper-card::before {
+    content: "";
+    @apply absolute inset-0 rounded-sm pointer-events-none;
+    background: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.4) 0%,
+      transparent 50%,
+      rgba(0,0,0,0.02) 100%
+    );
+  }
+
+  /* Lined paper effect */
+  .lined-paper {
+    background-image:
+      repeating-linear-gradient(
+        transparent,
+        transparent 27px,
+        #e8e4db 27px,
+        #e8e4db 28px
+      );
+    background-position: 0 8px;
+  }
+
+  /* Margin line for notebook effect - only on md screens and up */
+  .margin-line {
+    @apply relative;
+  }
+
+  .margin-line::before {
+    content: "";
+    @apply absolute top-0 bottom-0 w-px bg-accent-red/30 hidden md:block;
+    left: 60px;
+  }
+
+  /* Sticky note effect */
+  .sticky-note {
+    @apply p-4 shadow-sticky relative;
+    transform: rotate(-1deg);
+  }
+
+  .sticky-note-yellow {
+    @apply sticky-note;
+    background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+  }
+
+  .sticky-note-blue {
+    @apply sticky-note;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  }
+
+  .sticky-note-pink {
+    @apply sticky-note;
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+  }
+
+  .sticky-note-green {
+    @apply sticky-note;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  }
+
+  /* Tape effect */
+  .tape {
+    @apply absolute w-16 h-6 opacity-60;
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.6) 0%,
+      rgba(255,248,220,0.8) 50%,
+      rgba(255,255,255,0.6) 100%
+    );
+  }
+
+  .tape-top {
+    @apply tape -top-3 left-1/2 -translate-x-1/2;
+    transform: translateX(-50%) rotate(-2deg);
+  }
+
+  /* Underline sketch effect */
+  .sketch-underline {
+    @apply relative inline-block;
+  }
+
+  .sketch-underline::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 w-full h-1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10'%3E%3Cpath d='M0 5 Q 25 0, 50 5 T 100 5' stroke='%23c44536' stroke-width='2' fill='none' opacity='0.6'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+  }
+
+  /* Circle highlight effect */
+  .circle-highlight {
+    @apply relative inline-block;
+  }
+
+  .circle-highlight::before {
+    content: "";
+    @apply absolute -inset-2 rounded-full border-2 border-accent-red/40;
+    transform: rotate(-3deg);
+  }
+
+  /* Handwritten link style */
+  .hand-link {
+    @apply relative text-accent-blue font-handwriting text-lg transition-all duration-200;
+  }
+
+  .hand-link:hover {
+    @apply text-accent-red;
+  }
+
+  .hand-link::after {
+    content: "";
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent-red/60 transition-all duration-300;
+  }
+
+  .hand-link:hover::after {
+    @apply w-full;
+  }
+
+  /* Section divider - torn paper effect */
+  .torn-edge {
+    @apply relative;
+  }
+
+  .torn-edge::after {
+    content: "";
+    @apply absolute left-0 right-0 h-4 -bottom-4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 20'%3E%3Cpath d='M0 0 L20 8 L40 2 L60 10 L80 4 L100 12 L120 3 L140 9 L160 5 L180 11 L200 2 L220 8 L240 4 L260 10 L280 3 L300 9 L320 5 L340 11 L360 2 L380 8 L400 4 L420 10 L440 3 L460 9 L480 5 L500 11 L520 2 L540 8 L560 4 L580 10 L600 3 L620 9 L640 5 L660 11 L680 2 L700 8 L720 4 L740 10 L760 3 L780 9 L800 5 L820 11 L840 2 L860 8 L880 4 L900 10 L920 3 L940 9 L960 5 L980 11 L1000 2 L1020 8 L1040 4 L1060 10 L1080 3 L1100 9 L1120 5 L1140 11 L1160 2 L1180 8 L1200 4 L1200 20 L0 20 Z' fill='%23f5f1eb'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+  }
+
+  /* Doodle decorations */
+  .doodle-star {
+    @apply text-accent-yellow text-2xl;
+  }
+
+  .doodle-arrow {
+    @apply text-ink-faded;
+  }
+
+  /* Pencil text effect */
+  .pencil-text {
+    @apply text-pencil;
+    text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.1);
+  }
+
+  /* Code block on paper */
+  .code-paper {
+    @apply bg-paper-dark p-4 rounded font-mono text-sm border border-ink/10;
+    box-shadow: inset 2px 2px 4px rgba(0,0,0,0.05);
+  }
+}
+
+@layer utilities {
+  /* Rotate variations for organic feel */
+  .rotate-slight-left {
+    transform: rotate(-1.5deg);
+  }
+
+  .rotate-slight-right {
+    transform: rotate(1.5deg);
+  }
+
+  .rotate-slight-2 {
+    transform: rotate(2deg);
+  }
+
+  .rotate-slight-3 {
+    transform: rotate(-2.5deg);
+  }
+
+  /* Animation delays */
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
 }
