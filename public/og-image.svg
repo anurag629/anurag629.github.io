@@ -1,72 +1,131 @@
 <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,0,0,0.02)" stroke-width="1"/>
-    </pattern>
-    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#fdfbf7;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#f8f5ef;stop-opacity:1" />
+    <!-- Background gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f7f4ef"/>
+      <stop offset="50%" style="stop-color:#f5f1eb"/>
+      <stop offset="100%" style="stop-color:#ebe5db"/>
     </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="4" dy="4" stdDeviation="10" flood-color="rgba(0,0,0,0.1)"/>
+
+    <!-- Card shadow -->
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="20" flood-color="rgba(0,0,0,0.08)"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.05)"/>
     </filter>
+
+    <!-- Avatar border gradient -->
+    <linearGradient id="avatarBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3a5a7c"/>
+      <stop offset="100%" style="stop-color:#c44536"/>
+    </linearGradient>
+
+    <!-- Accent gradient -->
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c44536"/>
+      <stop offset="100%" style="stop-color:#d45546"/>
+    </linearGradient>
   </defs>
 
   <!-- Background -->
-  <rect width="100%" height="100%" fill="#f5f1eb"/>
-  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <rect width="100%" height="100%" fill="url(#bgGradient)"/>
 
-  <!-- Decorative elements -->
-  <text x="50" y="80" font-size="60" fill="rgba(0,0,0,0.08)">✦</text>
-  <text x="1100" y="580" font-size="40" fill="rgba(0,0,0,0.08)">✧</text>
+  <!-- Subtle grid pattern -->
+  <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+    <circle cx="2" cy="2" r="1" fill="rgba(0,0,0,0.03)"/>
+  </pattern>
+  <rect width="100%" height="100%" fill="url(#dots)"/>
 
-  <!-- Main card -->
-  <rect x="150" y="100" width="900" height="430" rx="8" fill="url(#cardGradient)" filter="url(#shadow)"/>
+  <!-- Decorative corner elements -->
+  <path d="M0 0 L120 0 L0 120 Z" fill="rgba(196,69,54,0.06)"/>
+  <path d="M1200 630 L1080 630 L1200 510 Z" fill="rgba(58,90,124,0.06)"/>
 
-  <!-- Tape decoration -->
-  <rect x="555" y="85" width="90" height="30" rx="2" fill="rgba(255,248,220,0.9)" transform="rotate(-2, 600, 100)"/>
+  <!-- Main content card -->
+  <rect x="80" y="80" width="1040" height="470" rx="16" fill="white" filter="url(#cardShadow)"/>
 
-  <!-- Name -->
-  <text x="600" y="220" text-anchor="middle" font-family="Georgia, serif" font-size="64" font-weight="bold" font-style="italic" fill="#2c2c2c">
-    Anurag Verma
-  </text>
+  <!-- Red accent line at top of card -->
+  <rect x="80" y="80" width="1040" height="6" rx="3" fill="url(#accentGradient)"/>
 
-  <!-- Title -->
-  <text x="600" y="280" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" fill="#4a4a4a">
-    Full Stack Developer &amp; AI Engineer
-  </text>
-
-  <!-- Skills -->
-  <g transform="translate(600, 340)">
-    <rect x="-280" y="-18" width="85" height="36" rx="18" fill="#3a5a7c"/>
-    <text x="-237" y="7" text-anchor="middle" font-family="system-ui" font-size="16" fill="white">Python</text>
-
-    <rect x="-180" y="-18" width="85" height="36" rx="18" fill="#3a5a7c"/>
-    <text x="-137" y="7" text-anchor="middle" font-family="system-ui" font-size="16" fill="white">Django</text>
-
-    <rect x="-80" y="-18" width="85" height="36" rx="18" fill="#3a5a7c"/>
-    <text x="-37" y="7" text-anchor="middle" font-family="system-ui" font-size="16" fill="white">Next.js</text>
-
-    <rect x="20" y="-18" width="100" height="36" rx="18" fill="#3a5a7c"/>
-    <text x="70" y="7" text-anchor="middle" font-family="system-ui" font-size="16" fill="white">TypeScript</text>
-
-    <rect x="135" y="-18" width="70" height="36" rx="18" fill="#3a5a7c"/>
-    <text x="170" y="7" text-anchor="middle" font-family="system-ui" font-size="16" fill="white">AI/ML</text>
-
-    <rect x="220" y="-18" width="70" height="36" rx="18" fill="#3a5a7c"/>
-    <text x="255" y="7" text-anchor="middle" font-family="system-ui" font-size="16" fill="white">Azure</text>
+  <!-- Left section: Avatar border ring (image composited separately) -->
+  <g transform="translate(200, 315)">
+    <!-- Avatar border ring -->
+    <circle cx="0" cy="0" r="74" fill="none" stroke="url(#avatarBorder)" stroke-width="4"/>
   </g>
 
-  <!-- Tagline sticky note -->
-  <g transform="translate(600, 420) rotate(-1)">
-    <rect x="-180" y="-25" width="360" height="50" fill="#fff9c4"/>
-    <text x="0" y="8" text-anchor="middle" font-family="Georgia, serif" font-size="20" font-style="italic" fill="#2c2c2c">
-      "Turning chaos into unicorns"
+  <!-- Right section: Content -->
+  <g transform="translate(340, 180)">
+    <!-- Name -->
+    <text x="0" y="0" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="bold" fill="#1a1a1a">
+      Anurag Verma
+    </text>
+
+    <!-- Title -->
+    <text x="0" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" fill="#4a4a4a">
+      Full Stack Developer &amp; AI Engineer
+    </text>
+
+    <!-- Divider line -->
+    <rect x="0" y="75" width="80" height="3" rx="1.5" fill="url(#accentGradient)"/>
+
+    <!-- Description -->
+    <text x="0" y="115" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" fill="#6b6b6b">
+      Building scalable web applications with Python, Django,
+    </text>
+    <text x="0" y="138" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" fill="#6b6b6b">
+      Next.js, and AI integration • 3+ years experience
     </text>
   </g>
 
-  <!-- Website -->
-  <text x="600" y="500" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" fill="#6b6b6b">
-    anurag629.github.io
-  </text>
+  <!-- Skills section -->
+  <g transform="translate(340, 380)">
+    <!-- Skill pills - Row 1 -->
+    <g>
+      <rect x="0" y="0" width="72" height="32" rx="16" fill="#3a5a7c"/>
+      <text x="36" y="21" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="500" fill="white">Python</text>
+    </g>
+    <g>
+      <rect x="82" y="0" width="72" height="32" rx="16" fill="#3a5a7c"/>
+      <text x="118" y="21" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="500" fill="white">Django</text>
+    </g>
+    <g>
+      <rect x="164" y="0" width="72" height="32" rx="16" fill="#3a5a7c"/>
+      <text x="200" y="21" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="500" fill="white">Next.js</text>
+    </g>
+    <g>
+      <rect x="246" y="0" width="90" height="32" rx="16" fill="#3a5a7c"/>
+      <text x="291" y="21" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="500" fill="white">TypeScript</text>
+    </g>
+    <g>
+      <rect x="346" y="0" width="62" height="32" rx="16" fill="#4a7c59"/>
+      <text x="377" y="21" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="500" fill="white">AI/ML</text>
+    </g>
+    <g>
+      <rect x="418" y="0" width="62" height="32" rx="16" fill="#4a7c59"/>
+      <text x="449" y="21" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="500" fill="white">Azure</text>
+    </g>
+  </g>
+
+  <!-- Bottom section: Website and tagline -->
+  <g transform="translate(340, 460)">
+    <!-- Tagline -->
+    <text x="0" y="0" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-style="italic" fill="#8b8b8b">
+      "Turning chaos into unicorns"
+    </text>
+
+    <!-- Website with icon -->
+    <g transform="translate(0, 35)">
+      <circle cx="8" cy="-4" r="8" fill="none" stroke="#c44536" stroke-width="1.5"/>
+      <path d="M8 -12 L8 4 M0 -4 L16 -4" stroke="#c44536" stroke-width="1.5" fill="none"/>
+      <text x="24" y="0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="500" fill="#c44536">
+        anurag629.github.io
+      </text>
+    </g>
+  </g>
+
+  <!-- Company badge -->
+  <g transform="translate(950, 500)">
+    <rect x="0" y="0" width="130" height="30" rx="15" fill="rgba(58,90,124,0.1)"/>
+    <text x="65" y="20" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="500" fill="#3a5a7c">
+      @DataWars
+    </text>
+  </g>
 </svg>
