@@ -88,7 +88,7 @@ export const metadata: Metadata = {
       "Full Stack Developer at DataWars specializing in Python, Django, Next.js, and AI integration. 3+ years of experience building scalable applications.",
     images: [
       {
-        url: `${siteUrl}/og-image.png`,
+        url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "Anurag Verma - Full Stack Developer",
@@ -101,7 +101,7 @@ export const metadata: Metadata = {
     description:
       "Full Stack Developer at DataWars specializing in Python, Django, Next.js, and AI integration.",
     creator: "@anurag_629",
-    images: [`${siteUrl}/og-image.png`],
+    images: [`${siteUrl}/twitter-image`],
   },
   alternates: {
     canonical: siteUrl,
