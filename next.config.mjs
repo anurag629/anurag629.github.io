@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   images: {
-    domains: ["codercops.com", "www.codercops.com"],
+    unoptimized: true,
   },
+  basePath: "",
+  trailingSlash: true,
 };
 
 export default nextConfig;
