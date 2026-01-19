@@ -2,18 +2,38 @@
 
 import { useEffect, useState } from "react";
 
+const UPSTASH_URL = "https://bursting-coral-42298.upstash.io";
+const UPSTASH_TOKEN = "AaU6AAIncDExZjQ3Yjc0YWIzNzg0MDBmOTUwNmNmNTMxMDY3YjlmM3AxNDIyOTg";
+
 export default function VisitorCounter() {
   const [count, setCount] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchCount = async () => {
+    const incrementAndGetCount = async () => {
       try {
-        const response = await fetch(
-          "https://api.countapi.xyz/hit/anurag629-github-io/visits"
-        );
+        // Check if this visitor was already counted (unique visitors only)
+        const storageKey = "portfolio_unique_visitor";
+        const alreadyCounted = localStorage.getItem(storageKey);
+
+        if (!alreadyCounted) {
+          // Increment the counter for new unique visitor
+          await fetch(`${UPSTASH_URL}/incr/portfolio_unique_visitors`, {
+            headers: {
+              Authorization: `Bearer ${UPSTASH_TOKEN}`,
+            },
+          });
+          localStorage.setItem(storageKey, "true");
+        }
+
+        // Get current count
+        const response = await fetch(`${UPSTASH_URL}/get/portfolio_unique_visitors`, {
+          headers: {
+            Authorization: `Bearer ${UPSTASH_TOKEN}`,
+          },
+        });
         const data = await response.json();
-        setCount(data.value);
+        setCount(parseInt(data.result) || 0);
       } catch (error) {
         console.error("Failed to fetch visitor count:", error);
       } finally {
@@ -21,7 +41,7 @@ export default function VisitorCounter() {
       }
     };
 
-    fetchCount();
+    incrementAndGetCount();
   }, []);
 
   return (
@@ -47,10 +67,11 @@ export default function VisitorCounter() {
             d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
           />
         </svg>
+        <span className="text-ink-light text-sm">Visitors</span>
         {loading ? (
           <span className="font-mono text-sm text-ink-faded animate-pulse">...</span>
         ) : count !== null ? (
-          <span className="font-mono text-sm text-ink font-medium">
+          <span className="font-mono text-sm text-accent-blue font-semibold">
             {count.toLocaleString()}
           </span>
         ) : (
