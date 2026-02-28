@@ -1,33 +1,33 @@
 # Anurag Verma - Portfolio
 
-A handwritten paper-style portfolio website built with Next.js and Tailwind CSS.
+A dark-themed developer portfolio built with Next.js and Tailwind CSS. Static export for GitHub Pages.
 
 **Live:** [anurag629.github.io](https://anurag629.github.io)
 
 ## Features
 
-- Handwritten fonts (Caveat, Kalam) for a personal touch
-- Paper texture backgrounds with notebook aesthetics
-- Sticky notes, tape decorations, and sketch-style elements
-- Fully responsive design
-- Smooth scroll navigation
-- Interactive hover animations
+- Dark theme with cyan–violet gradients and glass cards
+- Dot grid background, gradient orbs, code-block hero
+- Inter + JetBrains Mono typography
+- Fully responsive, smooth scroll, hover glow effects
+- Emoji favicon (⚡), OG images, PWA manifest
 
 ## Sections
 
-- **Hero** - Introduction with animated elements
-- **About** - Summary, education, certifications, languages
-- **Skills** - Technical skills organized by category
-- **Experience** - Work history with timeline
-- **Open Source** - GitHub profile, featured repos, contributions
-- **Projects** - Portfolio of work with tech stacks
-- **Contact** - Email, phone, social links
+- **Hero** - Split layout with code block and CTAs
+- **About** - Bento grid (bio, education, certs, languages, stats)
+- **Featured Project** - Single large project showcase
+- **Experience** - Vertical timeline with glass cards
+- **Skills** - Category headers with inline skill pills
+- **Projects** - Grid of project cards
+- **Open Source** - GitHub strip and contribution cards
+- **Contact** - Email, social links, blog
 
 ## Tech Stack
 
 - **Framework:** Next.js 14
 - **Styling:** Tailwind CSS
-- **Fonts:** Google Fonts (Caveat, Kalam, Nunito, JetBrains Mono)
+- **Fonts:** Inter, JetBrains Mono
 - **Language:** TypeScript
 
 ## Run Locally
@@ -51,7 +51,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## Build
 
 ```bash
-npm run build
+npm run build   # Prebuild generates favicons + OG image
 npm run start
 ```
 
@@ -60,18 +60,20 @@ npm run start
 ```
 src/
 ├── app/
-│   ├── globals.css    # Paper styling, animations
-│   ├── layout.tsx     # Root layout with fonts
+│   ├── globals.css    # Dark theme, glass cards, gradients
+│   ├── layout.tsx     # Root layout, fonts, meta
 │   └── page.tsx       # Main page
 ├── components/
-│   ├── Header.tsx     # Navigation
-│   ├── Hero.tsx       # Landing section
-│   ├── About.tsx      # Bio, education, certs
-│   ├── Skills.tsx     # Technical skills
-│   ├── Experience.tsx # Work timeline
-│   ├── OpenSource.tsx # GitHub & contributions
+│   ├── Header.tsx     # Fixed nav, glass on scroll
+│   ├── Hero.tsx       # Split layout, code block
+│   ├── About.tsx      # Bento grid
+│   ├── FeaturedProject.tsx
+│   ├── Experience.tsx # Timeline
+│   ├── Skills.tsx     # Skill pills
 │   ├── Projects.tsx   # Project cards
+│   ├── OpenSource.tsx # GitHub & contributions
 │   ├── Contact.tsx    # Contact info
+│   ├── VisitorCounter.tsx
 │   └── Footer.tsx     # Footer
 └── data/
     └── portfolio.ts   # All portfolio data
