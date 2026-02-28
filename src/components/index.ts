@@ -1,6 +1,7 @@
 export { default as Header } from "./Header";
 export { default as Hero } from "./Hero";
 export { default as About } from "./About";
+export { default as FeaturedProject } from "./FeaturedProject";
 export { default as Skills } from "./Skills";
 export { default as Experience } from "./Experience";
 export { default as OpenSource } from "./OpenSource";

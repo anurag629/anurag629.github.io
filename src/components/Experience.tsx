@@ -3,96 +3,79 @@ import { experience } from "@/data/portfolio";
 export default function Experience() {
   return (
     <section id="experience" className="py-24 relative">
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-6 w-px h-[calc(100%-160px)] bg-ink/10 hidden lg:block" />
-
       <div className="max-w-6xl mx-auto px-6">
-        {/* Section Title */}
-        <div className="mb-16">
-          <h2 className="font-handwriting text-5xl md:text-6xl text-ink mb-2">
-            Experience
-          </h2>
-          <p className="font-sketch text-ink-faded">My professional journey ✎</p>
-        </div>
+        <h2 className="text-3xl md:text-4xl font-bold text-zinc-50 mb-4">
+          Experience
+        </h2>
+        <p className="text-zinc-500 mb-16">My professional journey</p>
 
-        {/* Timeline */}
-        <div className="space-y-12">
-          {experience.map((job, index) => (
-            <div key={index} className="relative">
-              {/* Timeline dot */}
-              <div className="absolute -left-3 lg:left-3 top-6 w-6 h-6 bg-paper border-2 border-accent-red rounded-full hidden lg:flex items-center justify-center z-10">
-                <div className="w-2 h-2 bg-accent-red rounded-full" />
-              </div>
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-4 md:left-6 top-0 bottom-0 w-px bg-white/[0.08] hidden md:block" />
 
-              {/* Content card */}
-              <div className="lg:ml-16 paper-card p-6 md:p-8 hover:shadow-paper-hover transition-shadow duration-300">
-                <div className="tape-top" />
+          <div className="space-y-12">
+            {experience.map((job, index) => (
+              <div key={index} className="relative flex gap-6 md:gap-8">
+                {/* Timeline dot */}
+                <div className="hidden md:flex flex-shrink-0 w-12 justify-center">
+                  <div className="w-3 h-3 rounded-full bg-gradient-to-r from-accent-cyan to-accent-violet" />
+                </div>
 
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4 pt-2">
-                  <div>
-                    <h3 className="font-handwriting text-2xl md:text-3xl text-ink">
-                      {job.title}
-                    </h3>
-                    <div className="flex flex-wrap items-center gap-2 mt-1">
-                      <span className="font-sketch text-lg text-accent-blue">
-                        {job.company}
-                      </span>
-                      <span className="text-ink-faded">•</span>
-                      <span className="font-body text-sm text-ink-faded">
-                        {job.location}
-                      </span>
+                <div className="flex-1 glass-card p-6 md:p-8 transition-colors glow-border min-w-0">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
+                    <div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h3 className="text-xl md:text-2xl font-semibold text-zinc-50">
+                          {job.title}
+                        </h3>
+                        {index === 0 && (
+                          <span className="font-mono text-xs px-2 py-0.5 rounded bg-accent-green/20 text-accent-green">
+                            Current
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2 mt-1">
+                        <span className="text-accent-cyan">{job.company}</span>
+                        <span className="text-zinc-600">·</span>
+                        <span className="text-zinc-500 text-sm">
+                          {job.location}
+                        </span>
+                      </div>
+                      {job.type && (
+                        <span className="inline-block mt-2 px-2 py-1 rounded bg-white/[0.06] font-mono text-xs text-zinc-400">
+                          {job.type}
+                        </span>
+                      )}
                     </div>
-                    {job.type && (
-                      <span className="inline-block mt-2 px-2 py-1 bg-accent-green/10 text-accent-green font-sketch text-xs rounded">
-                        {job.type}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Period badge */}
-                  <div className="sticky-note-yellow px-4 py-2 !rotate-slight-right text-center">
-                    <span className="font-handwriting text-sm text-ink">
+                    <span className="font-mono text-sm text-zinc-500 flex-shrink-0">
                       {job.period}
                     </span>
                   </div>
-                </div>
 
-                {/* Highlights */}
-                <ul className="space-y-3 mt-6">
-                  {job.highlights.map((highlight, hIndex) => (
-                    <li key={hIndex} className="flex items-start gap-3">
-                      <span className="text-accent-red mt-1.5 flex-shrink-0">
-                        ✦
-                      </span>
-                      <span className="font-body text-ink-light leading-relaxed">
+                  <ul className="space-y-3 mt-6">
+                    {job.highlights.map((highlight, hIndex) => (
+                      <li
+                        key={hIndex}
+                        className="flex items-start gap-3 text-zinc-400 text-sm leading-relaxed"
+                      >
+                        <span className="text-accent-cyan mt-1.5 flex-shrink-0">
+                          •
+                        </span>
                         {highlight}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Doodle decoration */}
-                {index === 0 && (
-                  <div className="absolute -bottom-2 -right-2 font-handwriting text-2xl text-ink/20 rotate-12">
-                    current
-                  </div>
-                )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Earlier contributions note */}
-        <div className="mt-12 text-center">
-          <div className="inline-block paper-card p-4 rotate-slight-left">
-            <p className="font-handwriting text-lg text-ink-faded">
-              Also contributed to open source at{" "}
-              <span className="text-accent-blue">Oppia Foundation</span> &{" "}
-              <span className="text-accent-green">IVY</span> ✨
-            </p>
+            ))}
           </div>
         </div>
+
+        <p className="mt-12 text-center text-zinc-500 text-sm">
+          Also contributed to open source at{" "}
+          <span className="text-accent-cyan">Oppia Foundation</span> &{" "}
+          <span className="text-accent-violet">IVY</span>
+        </p>
       </div>
     </section>
   );

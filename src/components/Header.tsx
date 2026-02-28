@@ -19,39 +19,39 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-paper/95 backdrop-blur-sm shadow-paper py-3"
+          ? "bg-dark-base/80 backdrop-blur-xl border-b border-white/[0.06] py-3"
           : "bg-transparent py-5"
       }`}
     >
       <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo / Name */}
         <a
           href="#"
-          className="font-handwriting text-3xl text-ink hover:text-accent-red transition-colors"
+          className="font-mono text-lg font-medium text-zinc-50 hover:text-zinc-50 transition-colors"
         >
           {personalInfo.name.split(" ")[0]}
-          <span className="text-accent-red">.</span>
+          <span className="gradient-text">.</span>
         </a>
 
-        {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-8">
           {navigation.map((item) => (
             <li key={item.name}>
               <a
                 href={item.href}
-                className="font-sketch text-lg text-ink-light hover:text-accent-blue transition-colors relative group"
+                {...("external" in item && item.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                className="text-sm text-zinc-400 hover:text-zinc-50 transition-colors relative group"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-blue group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-accent-cyan to-accent-violet group-hover:w-full transition-all duration-300" />
               </a>
             </li>
           ))}
         </ul>
 
-        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 text-ink"
+          className="md:hidden p-2 text-zinc-400 hover:text-zinc-50"
           aria-label="Toggle menu"
         >
           <svg
@@ -79,16 +79,18 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-paper-cream shadow-paper border-t border-ink/10">
+        <div className="md:hidden absolute top-full left-0 right-0 glass-card border-t border-white/[0.08] rounded-none">
           <ul className="flex flex-col py-4">
             {navigation.map((item) => (
               <li key={item.name}>
                 <a
                   href={item.href}
+                  {...("external" in item && item.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-6 py-3 font-sketch text-lg text-ink-light hover:text-accent-blue hover:bg-paper-dark transition-colors"
+                  className="block px-6 py-3 text-sm text-zinc-400 hover:text-zinc-50 hover:bg-white/[0.03] transition-colors"
                 >
                   {item.name}
                 </a>

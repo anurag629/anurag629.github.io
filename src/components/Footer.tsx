@@ -4,51 +4,48 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-12 bg-paper-dark border-t border-ink/10 relative">
-      {/* Torn edge effect */}
-      <div className="absolute -top-4 left-0 right-0 h-4 torn-edge" />
-
+    <footer className="py-8 border-t border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Left - Name and tagline */}
-          <div className="text-center md:text-left">
-            <div className="font-handwriting text-3xl text-ink mb-1">
-              {personalInfo.name}
-            </div>
-            <div className="font-sketch text-sm text-ink-faded">
-              {personalInfo.title}
-            </div>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="font-mono text-sm text-zinc-500">
+            {personalInfo.name}
           </div>
 
-          {/* Center - Quick links */}
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex items-center gap-6">
             <a
               href="#about"
-              className="font-sketch text-ink-light hover:text-accent-blue transition-colors"
+              className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
             >
               About
             </a>
             <a
               href="#projects"
-              className="font-sketch text-ink-light hover:text-accent-blue transition-colors"
+              className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
             >
               Projects
             </a>
             <a
+              href="https://www.codercops.com/blog/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+            >
+              Blog
+            </a>
+            <a
               href="#contact"
-              className="font-sketch text-ink-light hover:text-accent-blue transition-colors"
+              className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
             >
               Contact
             </a>
           </div>
 
-          {/* Right - Social icons */}
           <div className="flex gap-4">
             <a
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-ink-faded hover:text-ink transition-colors"
+              className="text-zinc-500 hover:text-zinc-300 transition-colors"
               aria-label="GitHub"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -63,7 +60,7 @@ export default function Footer() {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-ink-faded hover:text-ink transition-colors"
+              className="text-zinc-500 hover:text-zinc-300 transition-colors"
               aria-label="LinkedIn"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -74,7 +71,7 @@ export default function Footer() {
               href={personalInfo.twitter}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-ink-faded hover:text-ink transition-colors"
+              className="text-zinc-500 hover:text-zinc-300 transition-colors"
               aria-label="Twitter"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -84,17 +81,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="mt-8 pt-6 border-t border-ink/10 text-center">
-          <p className="font-handwriting text-ink-faded">
-            Made with{" "}
-            <span className="text-accent-red inline-block animate-pulse">♥</span>{" "}
-            and a lot of ☕
-          </p>
-          <p className="font-body text-xs text-ink-faded/60 mt-2">
-            © {currentYear} {personalInfo.name}. All rights reserved.
-          </p>
-        </div>
+        <p className="mt-6 text-center font-mono text-xs text-zinc-600">
+          © {currentYear} {personalInfo.name}
+        </p>
       </div>
     </footer>
   );

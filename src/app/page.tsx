@@ -2,6 +2,7 @@ import {
   Header,
   Hero,
   About,
+  FeaturedProject,
   Skills,
   Experience,
   OpenSource,
@@ -18,10 +19,11 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Skills />
+        <FeaturedProject />
         <Experience />
-        <OpenSource />
+        <Skills />
         <Projects />
+        <OpenSource />
         <Contact />
       </main>
       <Footer />

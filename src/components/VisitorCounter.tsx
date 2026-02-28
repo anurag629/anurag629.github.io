@@ -12,12 +12,10 @@ export default function VisitorCounter() {
   useEffect(() => {
     const incrementAndGetCount = async () => {
       try {
-        // Check if this visitor was already counted (unique visitors only)
         const storageKey = "portfolio_unique_visitor";
         const alreadyCounted = localStorage.getItem(storageKey);
 
         if (!alreadyCounted) {
-          // Increment the counter for new unique visitor
           await fetch(`${UPSTASH_URL}/incr/portfolio_unique_visitors`, {
             headers: {
               Authorization: `Bearer ${UPSTASH_TOKEN}`,
@@ -26,7 +24,6 @@ export default function VisitorCounter() {
           localStorage.setItem(storageKey, "true");
         }
 
-        // Get current count
         const response = await fetch(`${UPSTASH_URL}/get/portfolio_unique_visitors`, {
           headers: {
             Authorization: `Bearer ${UPSTASH_TOKEN}`,
@@ -46,10 +43,9 @@ export default function VisitorCounter() {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      <div className="bg-paper-cream shadow-paper border border-ink-light/20 rounded-lg px-3 py-2 flex items-center gap-2 hover:shadow-lg transition-shadow">
-        {/* Eye icon */}
+      <div className="glass-card px-3 py-2 flex items-center gap-2 rounded-lg">
         <svg
-          className="w-4 h-4 text-accent-blue"
+          className="w-4 h-4 text-accent-cyan"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -67,15 +63,17 @@ export default function VisitorCounter() {
             d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
           />
         </svg>
-        <span className="text-ink-light text-sm">Visitors</span>
+        <span className="text-zinc-500 text-sm">Visitors</span>
         {loading ? (
-          <span className="font-mono text-sm text-ink-faded animate-pulse">...</span>
+          <span className="font-mono text-sm text-zinc-600 animate-pulse">
+            ...
+          </span>
         ) : count !== null ? (
-          <span className="font-mono text-sm text-accent-blue font-semibold">
+          <span className="font-mono text-sm text-accent-cyan font-medium">
             {count.toLocaleString()}
           </span>
         ) : (
-          <span className="font-mono text-sm text-ink-faded">--</span>
+          <span className="font-mono text-sm text-zinc-600">--</span>
         )}
       </div>
     </div>

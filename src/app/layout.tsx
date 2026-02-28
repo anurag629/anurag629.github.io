@@ -1,23 +1,10 @@
 import type { Metadata } from "next";
-import { Caveat, Kalam, Nunito, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const caveat = Caveat({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-handwriting",
-  display: "swap",
-});
-
-const kalam = Kalam({
-  weight: ["300", "400", "700"],
-  subsets: ["latin"],
-  variable: "--font-sketch",
-  display: "swap",
-});
-
-const nunito = Nunito({
-  subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -208,17 +195,18 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#f5f1eb" />
+        <meta name="theme-color" content="#09090b" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body
-        className={`${caveat.variable} ${kalam.variable} ${nunito.variable} ${jetbrainsMono.variable} font-body`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}
       >
         {children}
       </body>

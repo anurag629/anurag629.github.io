@@ -77,6 +77,7 @@ Educational platform - 5 merged pull requests
 - LinkedIn: https://linkedin.com/in/anurag629
 - Twitter: https://twitter.com/anurag_629
 - Website: https://www.codercops.com
+- Blog: https://www.codercops.com/blog/ (Open Graph images: https://og.codercops.com)
 
 ## Organizations
 

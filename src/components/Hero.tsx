@@ -2,81 +2,86 @@ import { personalInfo } from "@/data/portfolio";
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-10 text-6xl opacity-20 rotate-12 select-none">
-        ✦
+    <section className="min-h-screen flex items-center relative overflow-hidden pt-20">
+      {/* Gradient orbs */}
+      <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-accent-cyan/15 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-accent-violet/15 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 w-full">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left - Content */}
+          <div>
+            <p className="text-sm text-zinc-500 mb-4 animate-fade-in">
+              Hello, I&apos;m
+            </p>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-zinc-50 mb-4 leading-tight animate-fade-in animation-delay-100">
+              {personalInfo.name}
+            </h1>
+            <div className="mb-6 animate-fade-in animation-delay-200">
+              <span className="font-mono text-lg text-accent-cyan">
+                &lt;{personalInfo.title} /&gt;
+              </span>
+            </div>
+            <p className="text-lg text-zinc-400 max-w-xl mb-10 leading-relaxed animate-fade-in animation-delay-300">
+              Building bridges between{" "}
+              <span className="text-accent-cyan">data science</span> and{" "}
+              <span className="text-accent-violet">software engineering</span>.
+              Specializing in Python, Django, Next.js, and AI integration.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in animation-delay-400">
+              <a
+                href="#projects"
+                className="group inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gradient-to-r from-accent-cyan to-accent-violet text-zinc-50 font-medium hover:shadow-glow transition-all duration-300"
+              >
+                View My Work
+                <span className="ml-2 group-hover:translate-x-1 transition-transform">
+                  →
+                </span>
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-white/20 text-zinc-300 font-medium hover:bg-white/5 hover:border-white/30 transition-all duration-300"
+              >
+                Get In Touch
+              </a>
+            </div>
+          </div>
+
+          {/* Right - Code block */}
+          <div className="code-block overflow-hidden animate-fade-in animation-delay-300">
+            <div className="flex items-center gap-2 pb-4 mb-4 border-b border-white/[0.08]">
+              <div className="w-3 h-3 rounded-full bg-zinc-600" />
+              <div className="w-3 h-3 rounded-full bg-zinc-600" />
+              <div className="w-3 h-3 rounded-full bg-zinc-600" />
+              <span className="ml-2 font-mono text-xs text-zinc-500">
+                portfolio.py
+              </span>
+            </div>
+            <pre className="font-mono text-sm leading-relaxed">
+              <code>
+                <span className="text-accent-violet">def</span>{" "}
+                <span className="text-accent-cyan">build_something</span>
+                <span className="text-zinc-400">():</span>
+                {"\n"}
+                <span className="text-zinc-500">  </span>
+                <span className="text-accent-violet">return</span>{" "}
+                <span className="text-accent-green">&quot;{personalInfo.tagline}&quot;</span>
+                {"\n\n"}
+                <span className="text-zinc-500"># </span>
+                <span className="text-zinc-500">
+                  Python · Django · Next.js · AI
+                </span>
+              </code>
+            </pre>
+          </div>
+        </div>
       </div>
-      <div className="absolute bottom-32 right-16 text-4xl opacity-20 -rotate-12 select-none">
-        ✧
-      </div>
-      <div className="absolute top-40 right-20 w-20 h-20 border-2 border-ink/10 rounded-full" />
-      <div className="absolute bottom-40 left-20 w-12 h-12 border border-accent-red/20 rotate-45" />
 
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        {/* Greeting - small handwritten note */}
-        <div className="inline-block mb-6 rotate-slight-left">
-          <span className="font-sketch text-lg text-ink-faded">
-            ~ Hello, I&apos;m ~
-          </span>
-        </div>
-
-        {/* Name - large handwritten */}
-        <h1 className="font-handwriting text-7xl md:text-8xl lg:text-9xl text-ink mb-4 leading-tight animate-fade-in">
-          {personalInfo.name}
-        </h1>
-
-        {/* Title with underline sketch */}
-        <div className="mb-8 animate-fade-in animation-delay-200">
-          <h2 className="font-sketch text-2xl md:text-3xl text-ink-light inline-block sketch-underline">
-            {personalInfo.title}
-          </h2>
-        </div>
-
-        {/* Tagline in a sticky note style */}
-        <div className="inline-block sticky-note-yellow rotate-slight-right mb-12 animate-fade-in animation-delay-300">
-          <p className="font-handwriting text-xl text-ink">
-            &quot;{personalInfo.tagline}&quot;
-          </p>
-        </div>
-
-        {/* Brief intro */}
-        <p className="font-body text-lg text-ink-light max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in animation-delay-400">
-          Building bridges between{" "}
-          <span className="font-sketch text-accent-blue">data science</span> and{" "}
-          <span className="font-sketch text-accent-green">
-            software engineering
-          </span>
-          . Specializing in Python, Django, Next.js, and AI integration.
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in animation-delay-500 pb-24 md:pb-0">
-          <a
-            href="#projects"
-            className="group px-8 py-3 bg-ink text-paper-cream font-sketch text-lg rounded-sm shadow-paper hover:shadow-paper-hover hover:-translate-y-0.5 transition-all duration-200"
-          >
-            View My Work
-            <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">
-              →
-            </span>
-          </a>
-          <a
-            href="#contact"
-            className="px-8 py-3 border-2 border-ink text-ink font-sketch text-lg rounded-sm hover:bg-ink hover:text-paper-cream transition-all duration-200"
-          >
-            Get In Touch
-          </a>
-        </div>
-      </div>
-
-      {/* Scroll indicator - positioned relative to section, hidden on small screens */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
-        <div className="font-handwriting text-ink-faded text-sm mb-2">
-          scroll down
-        </div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 animate-bounce">
+        <span className="font-mono text-xs text-zinc-500">Explore</span>
         <svg
-          className="w-6 h-6 mx-auto text-ink-faded"
+          className="w-5 h-5 text-zinc-500"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

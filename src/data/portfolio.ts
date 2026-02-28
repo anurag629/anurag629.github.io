@@ -6,6 +6,8 @@ export const personalInfo = {
   phone: "+91 8052027789",
   location: "Noida, India",
   website: "www.codercops.com",
+  blog: "https://www.codercops.com/blog/",
+  blogOgImage: "https://og.codercops.com",
   github: "https://github.com/anurag629",
   linkedin: "https://linkedin.com/in/anurag629",
   twitter: "https://twitter.com/anurag_629",
@@ -221,7 +223,6 @@ export const projects = [
       "Azure Storage",
     ],
     link: "https://the-venting-spot.vercel.app/",
-    color: "pink",
   },
   {
     name: "Colleatz",
@@ -231,7 +232,6 @@ export const projects = [
     year: "2024",
     technologies: ["Next.js", "FastAPI", "MongoDB", "Twilio"],
     link: null,
-    color: "yellow",
   },
   {
     name: "StickGuard",
@@ -241,7 +241,6 @@ export const projects = [
     year: "2024",
     technologies: ["React", "Node.js", "JWT", "MongoDB"],
     link: null,
-    color: "blue",
   },
   {
     name: "Lore Web3",
@@ -251,7 +250,6 @@ export const projects = [
     year: "2024",
     technologies: ["Next.js", "Ethereum", "Solidity", "IPFS"],
     link: null,
-    color: "green",
   },
   {
     name: "OMEGA",
@@ -261,7 +259,6 @@ export const projects = [
     year: "2024",
     technologies: ["Django", "Next.js", "Docker", "Google Gemini", "Azure OpenAI"],
     link: null,
-    color: "yellow",
   },
   {
     name: "AI Interview",
@@ -271,7 +268,6 @@ export const projects = [
     year: "2024",
     technologies: ["Next.js", "React", "OpenAI", "Tailwind CSS"],
     link: null,
-    color: "blue",
   },
 ];
 
@@ -298,5 +294,6 @@ export const navigation = [
   { name: "Experience", href: "#experience" },
   { name: "Open Source", href: "#opensource" },
   { name: "Projects", href: "#projects" },
+  { name: "Blog", href: "https://www.codercops.com/blog/", external: true },
   { name: "Contact", href: "#contact" },
 ];

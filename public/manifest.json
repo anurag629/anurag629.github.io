@@ -4,8 +4,8 @@
   "description": "Full Stack Developer & AI Engineer specializing in Python, Django, Next.js, and AI integration.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f5f1eb",
-  "theme_color": "#f5f1eb",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
   "orientation": "portrait-primary",
   "icons": [
     {
