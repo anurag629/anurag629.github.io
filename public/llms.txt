@@ -1,96 +1,88 @@
-# Anurag Verma - Full Stack Developer & AI Engineer
+# Anurag Verma
 
-> This file provides structured information about Anurag Verma for AI assistants and language models.
+> Structured summary for AI assistants. Generated at build time on 2026-08-07.
 
 ## Identity
 
 - Name: Anurag Verma
-- Title: Full Stack Developer & AI Engineer
-- Current Role: Full Stack Developer at DataWars
-- Location: Noida, India
-- Website: https://anurag629.github.io
+- Role: AI infrastructure engineer and founder
+- Current: Full Stack Engineer at DataWars; Founder at CoderCops
+- Location: Uttar Pradesh, India
+- Site: https://anurag629.github.io
 - Email: akvermaav629@gmail.com
 
-## Professional Summary
+## Summary
 
-Anurag Verma is a Full Stack Developer who transitioned from leading Data Science teams to building scalable web infrastructure. He specializes in Python (Django/FastAPI), JavaScript/TypeScript (Next.js/React), and AI integration. With 3+ years of experience, he has led teams, built 300+ ML educational labs, and reduced operational costs by 35% through architectural improvements.
+Anurag Verma builds LLM infrastructure: multi-provider gateways, per-request
+token metering, model routing, and persistent memory for coding agents. He
+started in data science, led a nine-person team building machine learning
+coursework at DataWars, then moved into the platform engineering underneath it.
 
-## Technical Skills
+He has three patches merged into Django itself, all in the test infrastructure,
+and applied to Google Summer of Code 2026 to migrate Django's integration tests
+to Playwright.
 
-### Backend Development
-Python, Django, FastAPI, JavaScript, TypeScript, Bash
+## Current work
 
-### Cloud & DevOps
-Azure, AWS, Heroku, Docker, CI/CD, GitHub Actions
+- CoderCops (founder) — chat-first hiring platform. Streaming agent over SSE,
+  multi-model routing, prompt-injection filtering, confirmation-gated tools.
+- cortex-bridge (author) — persistent memory for coding agents, backed by
+  Cognee. Survives context compaction. TypeScript.
+- LLM gateway (engineer, closed source) — one API across four providers with
+  per-request billing, envelope-encrypted credentials and automatic failover.
 
-### Database Systems
-PostgreSQL, MySQL, SQLite, MongoDB, Neo4j, ETL Pipelines
+## Experience
 
-### AI & Machine Learning
-TensorFlow, PyTorch, Keras, Computer Vision, OpenAI API, Hugging Face
+- Founder, CoderCops (2025 — present)
+- Full Stack Engineer, DataWars (Jul 2025 — present). Built a browser-based
+  coding environment running Python and JavaScript client-side; moved the
+  platform off Docker-per-session execution, cutting operating cost ~35%.
+- Data Science Team Lead, DataWars (Jun 2023 — Jul 2025). Led nine people
+  building 300+ interactive ML labs; wrote a Pytest assertion library with
+  150+ statistical checks.
+- Freelance ML / Full Stack Developer, Upwork (Jul 2022 — Sep 2024).
 
-### Tools & Platforms
-REST APIs, Pytest, Git, Jupyter, Power BI
+## Open source
 
-## Work Experience
+- django/django — 3 merged: #20931, #20781, #20776. One open: #20757.
+- oppia/oppia — 5 merged (2021–2022), Python 3 migration.
+- unifyai/ivy — 4 merged (2022–2023), linear algebra across backends.
+- recodehive/awesome-github-profiles — 2 merged (2026).
+- Orgs: FOSSASIA, EddieHubCommunity, Py-Contributors, recodehive.
 
-### Full Stack Developer at DataWars (July 2025 - Present)
-- Built browser-based LeetCode-style coding environment
-- Reduced operational costs by 35% via architecture migration
-- Developed RESTful APIs and AI-driven evaluation features
+Total merged pull requests: 1,492, of which 49 are in third-party
+repositories. The remainder are DataWars and CoderCops work repositories.
 
-### Data Science Team Lead at DataWars (June 2023 - July 2025)
-- Led 9-member team developing 300+ ML/data science labs
-- Architected Pytest-based assertion library with 150+ validation checks
-- Improved delivery efficiency by 50%
+## Stack
 
-### Freelance ML/Full Stack Developer on Upwork (July 2022 - Sept 2024)
-- Built ML/DL models using TensorFlow, PyTorch, Keras
-- Developed Computer Vision solutions
-- Deployed on AWS, Azure, Heroku
+- LLM: OpenAI, Anthropic, AWS Bedrock, OpenRouter, MCP
+- Backend: Python, Django, DRF, FastAPI, Celery
+- Frontend: TypeScript, Next.js, React, Tailwind
+- Data: PostgreSQL, pgvector, Redis, MongoDB, Neo4j
+- Infra: Docker, Azure, AWS, Nginx, GitHub Actions
+- ML: PyTorch, TensorFlow, Hugging Face, OpenCV
 
-## Education
+## Public GitHub
 
-Bachelor of Engineering in Computer Science
-Dr. Bhim Rao Ambedkar University, Agra (2020-2024)
-CGPA: 7.4/10
+71 original public repositories, 157 stars, 93 followers.
+Notable: 50-Days-Data-Science (72★), cortex-bridge (4★), ai_interview (4★), lore (4★), omega-server (2★), netra_ai_surviellance (2★).
 
-## Open Source Contributions
+## Writing
 
-### IVY (github.com/ivy-llc/ivy)
-Unified AI framework - 4 merged pull requests
+70 posts on dev.to (541 reactions), mirrored on Hashnode. Mostly data science
+and Python, written across 2022 and 2023.
 
-### Oppia Foundation (github.com/oppia/oppia)
-Educational platform - 5 merged pull requests
+## Other
 
-## Notable Projects
+- Kaggle: Datasets Expert (rank 1,821/11,026), Notebooks Expert (5,462/61,465)
+- Education: B.E. Computer Science, Dr. Bhim Rao Ambedkar University, Agra (2020–2024)
+- Languages: Hindi (native), English (professional)
 
-1. **The Venting Spot** - Mental wellness platform with 24/7 support (Next.js, Django, PostgreSQL)
-2. **Lore Web3** - Blockchain IP protection for creators (Next.js, Ethereum, Solidity)
-3. **AI Interview** - AI-powered mock interview platform (Next.js, OpenAI)
-4. **OMEGA** - AI educational animation platform (Django, Next.js, Manim)
-5. **CODERCOPS** - Community management platform (Next.js, Django, Azure)
+## Links
 
-## Social Links
-
-- GitHub: https://github.com/anurag629 (102 repos, 89 followers, 169 stars)
-- LinkedIn: https://linkedin.com/in/anurag629
-- Twitter: https://twitter.com/anurag_629
-- Website: https://www.codercops.com
-- Blog: https://www.codercops.com/blog/ (Open Graph images: https://og.codercops.com)
-
-## Organizations
-
-FOSSASIA, EddieHubCommunity, Py-Contributors, DataWars, CoderCops
-
-## Languages
-
-- Hindi: Full Professional
-- English: Professional Working
-
-## Contact
-
-For collaborations, job opportunities, or inquiries:
-- Email: akvermaav629@gmail.com
-- Phone: +91 8052027789
-- Location: Noida, India
+- GitHub: https://github.com/anurag629
+- LinkedIn: https://www.linkedin.com/in/anurag629
+- X: https://x.com/anurag_629
+- CoderCops: https://www.codercops.com
+- dev.to: https://dev.to/anurag629
+- Kaggle: https://www.kaggle.com/anurag629

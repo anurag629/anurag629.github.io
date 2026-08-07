@@ -1,93 +1,85 @@
-# Anurag Verma - Portfolio
+# anurag629.github.io
 
-A dark-themed developer portfolio built with Next.js and Tailwind CSS. Static export for GitHub Pages.
+Personal site for Anurag Verma. Single page, statically exported, deployed to
+GitHub Pages.
 
 **Live:** [anurag629.github.io](https://anurag629.github.io)
 
-## Features
+## Design
 
-- Dark theme with cyan–violet gradients and glass cards
-- Dot grid background, gradient orbs, code-block hero
-- Inter + JetBrains Mono typography
-- Fully responsive, smooth scroll, hover glow effects
-- Emoji favicon (⚡), OG images, PWA manifest
+"Instrument panel" — cold near-black with an amber signal colour, hairline
+rules and corner-ticked frames. The reference is a routing console rather than
+a terminal, because routing and metering is what the work actually is. The
+stack section is rendered as a provider routing table for the same reason.
 
-## Sections
+Type is Martian Mono for display, IBM Plex Mono for data and IBM Plex Sans for
+prose. A light "blueprint" theme ships behind the toggle in the header; the
+choice persists in `localStorage`.
 
-- **Hero** - Split layout with code block and CTAs
-- **About** - Bento grid (bio, education, certs, languages, stats)
-- **Featured Project** - Single large project showcase
-- **Experience** - Vertical timeline with glass cards
-- **Skills** - Category headers with inline skill pills
-- **Projects** - Grid of project cards
-- **Open Source** - GitHub strip and contribution cards
-- **Contact** - Email, social links, blog
+Every foreground/background pair in both themes clears WCAG AA.
 
-## Tech Stack
+## Data
 
-- **Framework:** Next.js 14
-- **Styling:** Tailwind CSS
-- **Fonts:** Inter, JetBrains Mono
-- **Language:** TypeScript
+Nothing countable is hard-coded. `scripts/fetch-github.mjs` runs before every
+build and pulls repositories, stars, followers and the contribution calendar
+into `src/data/generated/github.json`, which is committed and doubles as the
+fallback if the API is unreachable. `scripts/generate-assets.mjs` then derives
+the OG image, favicons, `llms.txt` and `sitemap.xml` from that same data, so
+they cannot drift apart.
 
-## Run Locally
+Hand-written content lives in `src/data/profile.ts`. Two rules apply there:
+
+- Every pull request linked from the site was verified as merged and authored
+  by `anurag629` before it was listed.
+- Work in private repositories is described, never linked. No private
+  repository names appear anywhere in the build output.
+
+## Run it
 
 ```bash
-# Clone the repository
-git clone https://github.com/anurag629/anurag629.github.io.git
-
-# Navigate to directory
-cd anurag629.github.io
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Build
+Open <http://localhost:3111>.
 
 ```bash
-npm run build   # Prebuild generates favicons + OG image
-npm run start
+npm run build
 ```
 
-## Project Structure
+`prebuild` fetches GitHub data and regenerates assets, then `next build`
+exports to `out/`. Set `GITHUB_TOKEN` to include the contribution calendar,
+which needs the GraphQL API — without it the build still succeeds and keeps the
+committed snapshot's numbers.
+
+```bash
+npm run check
+```
+
+Runs `tsc --noEmit` and `next lint`.
+
+## Structure
 
 ```
+scripts/
+├── fetch-github.mjs      # build-time GitHub data → generated/github.json
+└── generate-assets.mjs   # OG image, favicons, llms.txt, sitemap
 src/
 ├── app/
-│   ├── globals.css    # Dark theme, glass cards, gradients
-│   ├── layout.tsx     # Root layout, fonts, meta
-│   └── page.tsx       # Main page
-├── components/
-│   ├── Header.tsx     # Fixed nav, glass on scroll
-│   ├── Hero.tsx       # Split layout, code block
-│   ├── About.tsx      # Bento grid
-│   ├── FeaturedProject.tsx
-│   ├── Experience.tsx # Timeline
-│   ├── Skills.tsx     # Skill pills
-│   ├── Projects.tsx   # Project cards
-│   ├── OpenSource.tsx # GitHub & contributions
-│   ├── Contact.tsx    # Contact info
-│   ├── VisitorCounter.tsx
-│   └── Footer.tsx     # Footer
+│   ├── globals.css       # design tokens, both themes, focus + motion rules
+│   ├── layout.tsx        # fonts, metadata, JSON-LD
+│   └── page.tsx          # section order
+├── components/           # one file per section, plus Rail / Reveal / Section
 └── data/
-    └── portfolio.ts   # All portfolio data
+    ├── profile.ts        # hand-written content
+    └── generated/        # fetched at build time
 ```
 
-## Customization
+## Deployment
 
-All personal data is in `src/data/portfolio.ts`. Update this file to customize:
-- Personal info & social links
-- Skills & certifications
-- Work experience
-- Projects
-- GitHub stats & repos
+Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds and
+publishes `out/` to GitHub Pages.
 
-## License
+## Licence
 
-MIT
+MIT.
