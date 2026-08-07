@@ -19,18 +19,30 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="border-t border-rule py-8">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="font-mono text-2xs text-dim">
-          © {year} {identity.name}
+    <footer className="border-t border-rule py-6 font-mono text-2xs">
+      <p className="text-dim">
+        <span className="prompt-sigil" aria-hidden="true">
+          ${" "}
+        </span>
+        exit
+      </p>
+
+      <p className="mt-2 text-dimmer">
+        logout · connection to anurag@github closed.
+      </p>
+
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-dimmer">
+          © {year} {identity.name} · built with Next.js, exported static,
+          served by GitHub Pages
         </p>
 
         <nav aria-label="Elsewhere">
-          <ul className="flex flex-wrap gap-x-5 gap-y-2">
+          <ul className="flex flex-wrap gap-x-4">
             {[
-              ["GitHub", links.github],
-              ["LinkedIn", links.linkedin],
-              ["X", links.x],
+              ["github", links.github],
+              ["linkedin", links.linkedin],
+              ["x", links.x],
               ["dev.to", links.devto],
             ].map(([label, href]) => (
               <li key={label}>
@@ -38,7 +50,7 @@ export default function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="tap inline-block min-w-[44px] py-3 text-center font-mono text-2xs text-dim transition-colors hover:text-signal"
+                  className="tap inline-block min-w-[44px] py-3 text-center text-dim transition-colors hover:text-signal"
                 >
                   {label}
                 </a>
@@ -46,10 +58,6 @@ export default function Footer() {
             ))}
           </ul>
         </nav>
-
-        <p className="font-mono text-2xs text-dimmer">
-          Next.js · static export · GitHub Pages
-        </p>
       </div>
     </footer>
   );

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Martian_Mono, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Martian_Mono, IBM_Plex_Mono } from "next/font/google";
 import { identity, links, signals } from "@/data/profile";
 import "./globals.css";
 
@@ -17,17 +17,10 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
 });
 
-const plexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  variable: "--font-plex-sans",
-  display: "swap",
-  weight: ["400", "500", "600"],
-});
-
 const siteUrl = "https://anurag629.github.io";
 const title = "Anurag Verma — AI infra engineer & founder";
 const description =
-  "Anurag Verma builds LLM gateways, agent memory and model routing. Full Stack Engineer at DataWars, founder of CoderCops, and a Django core contributor with three patches merged into the framework.";
+  "Anurag Verma builds LLM gateways, agent memory and model routing. Full Stack Engineer at DataWars, founder of CODERCOPS, and a Django core contributor with three patches merged into the framework.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -45,7 +38,7 @@ export const metadata: Metadata = {
     "Next.js",
     "TypeScript",
     "DataWars",
-    "CoderCops",
+    "CODERCOPS",
     "India",
   ],
   authors: [{ name: identity.name, url: siteUrl }],
@@ -133,7 +126,7 @@ export default function RootLayout({
           },
           {
             "@type": "Organization",
-            name: "CoderCops",
+            name: "CODERCOPS",
             url: links.codercops,
           },
         ],
@@ -189,9 +182,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body
-        className={`${martian.variable} ${plexMono.variable} ${plexSans.variable} font-sans`}
-      >
+      {/* Everything is monospace. It is a terminal. */}
+      <body className={`${martian.variable} ${plexMono.variable} font-mono`}>
         {children}
       </body>
     </html>

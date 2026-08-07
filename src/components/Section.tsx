@@ -1,39 +1,39 @@
 import type { ReactNode } from "react";
 import Reveal from "./Reveal";
+import Prompt from "./Prompt";
 
 /**
- * The repeating structural unit.
+ * A section is one command and its output.
  *
- * The index is not decoration — sections are a fixed sequence and the number
- * is what the left rail tracks against, so a reader always knows where in the
- * page they are.
+ * The heading carries an sr-only title so assistive tech gets "Open source"
+ * rather than "cat open-source.md", while sighted readers get the shell line.
  */
 export default function Section({
   id,
-  index,
   title,
+  cmd,
+  args,
   caption,
   children,
 }: {
   id: string;
-  index: string;
   title: string;
+  cmd: string;
+  args?: string;
   caption?: string;
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-24 py-16 md:py-24">
+    <section id={id} className="scroll-mt-20 py-12 md:py-16">
       <Reveal>
-        <header className="mb-8 md:mb-12">
-          <div className="tick-rule mb-4" />
-          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-            <span className="label text-signal">{index}</span>
-            <h2 className="display text-2xl font-bold uppercase md:text-3xl">
-              {title}
-            </h2>
-          </div>
+        <header className="mb-6 md:mb-8">
+          <h2 className="prompt">
+            <Prompt cmd={cmd} args={args} srLabel={title} />
+          </h2>
           {caption ? (
-            <p className="mt-2 max-w-2xl text-sm text-dim">{caption}</p>
+            <p className="mt-2 max-w-2xl pl-0 text-sm leading-relaxed text-dim md:pl-4">
+              {caption}
+            </p>
           ) : null}
         </header>
       </Reveal>

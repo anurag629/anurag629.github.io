@@ -43,19 +43,20 @@ export default function OpenSource() {
                   href={pr.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex min-h-[44px] flex-wrap items-center gap-x-4 gap-y-1 py-3 transition-colors hover:bg-[color-mix(in_srgb,var(--panel)_60%,transparent)]"
+                  className="group block min-h-[44px] py-3 transition-colors hover:bg-void sm:flex sm:items-baseline sm:gap-4"
                 >
-                  <span className="label flex flex-none items-center gap-2 text-ok">
-                    <span className="pip pip-ok" />
-                    merged
+                  <span className="flex items-baseline gap-3 sm:contents">
+                    <span className="flex-none font-mono text-2xs text-ok">
+                      [merged]
+                    </span>
+                    <span className="flex-none font-mono text-2xs tabular-nums text-dim">
+                      #{pr.number}
+                    </span>
                   </span>
-                  <span className="font-mono text-2xs tabular-nums text-dim">
-                    #{pr.number}
-                  </span>
-                  <span className="flex-1 text-sm text-text group-hover:text-signal">
+                  <span className="mt-1 block text-sm text-text group-hover:text-signal sm:mt-0 sm:flex-1">
                     {pr.title}
                   </span>
-                  <span className="font-mono text-2xs tabular-nums text-dimmer">
+                  <span className="mt-1 block flex-none font-mono text-2xs tabular-nums text-dimmer sm:mt-0">
                     {pr.merged}
                   </span>
                 </a>
@@ -66,34 +67,23 @@ export default function OpenSource() {
                 href={headline.open.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex min-h-[44px] flex-wrap items-center gap-x-4 gap-y-1 py-3"
+                className="group block min-h-[44px] py-3 sm:flex sm:items-baseline sm:gap-4"
               >
-                <span className="label flex flex-none items-center gap-2 text-signal">
-                  <span className="pip pip-signal" />
-                  open
+                <span className="flex items-baseline gap-3 sm:contents">
+                  <span className="flex-none font-mono text-2xs text-signal">
+                    [ open ]
+                  </span>
+                  <span className="flex-none font-mono text-2xs tabular-nums text-dim">
+                    #{headline.open.number}
+                  </span>
                 </span>
-                <span className="font-mono text-2xs tabular-nums text-dim">
-                  #{headline.open.number}
-                </span>
-                <span className="flex-1 text-sm text-dim group-hover:text-signal">
+                <span className="mt-1 block text-sm text-dim group-hover:text-signal sm:mt-0 sm:flex-1">
                   {headline.open.title}
                 </span>
               </a>
             </li>
           </ul>
 
-          <a
-            href={headline.proposal.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="frame frame-hover mt-6 block p-4"
-          >
-            <span className="label text-trace">proposal</span>
-            <p className="mt-1.5 text-sm text-text">
-              {headline.proposal.title} ↗
-            </p>
-            <p className="mt-1 text-sm text-dim">{headline.proposal.note}</p>
-          </a>
         </div>
       </Reveal>
 
