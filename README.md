@@ -7,14 +7,20 @@ GitHub Pages.
 
 ## Design
 
-"Instrument panel" — cold near-black with an amber signal colour, hairline
-rules and corner-ticked frames. The reference is a routing console rather than
-a terminal, because routing and metering is what the work actually is. The
-stack section is rendered as a provider routing table for the same reason.
+The page is a terminal session. A window title bar at the top, a tmux-style
+status line at the bottom that tracks real scroll position, and every section
+introduced by the command that would produce it — `neofetch`, `ls -la ~/repos`,
+`git log --graph --oneline`, `gh pr list --author @me --state merged`.
 
-Type is Martian Mono for display, IBM Plex Mono for data and IBM Plex Sans for
-prose. A light "blueprint" theme ships behind the toggle in the header; the
-choice persists in `localStorage`.
+Amber phosphor rather than the usual green. DEC VT220 and Wyse terminals
+shipped amber, it reads warmer, and it clears WCAG AA at 10:1 where a bright
+green does not without going neon. Scanlines are a fixed low-contrast overlay,
+disabled in light mode and under `prefers-reduced-motion`.
+
+Everything is monospace: Martian Mono as the display accent, IBM Plex Mono for
+the rest. The identity block reuses the chip ASCII from Anurag's own GitHub
+profile README. A light theme ships behind the toggle in the title bar and
+persists in `localStorage`.
 
 Every foreground/background pair in both themes clears WCAG AA.
 
@@ -69,7 +75,7 @@ src/
 │   ├── globals.css       # design tokens, both themes, focus + motion rules
 │   ├── layout.tsx        # fonts, metadata, JSON-LD
 │   └── page.tsx          # section order
-├── components/           # one file per section, plus Rail / Reveal / Section
+├── components/           # one file per section, plus Prompt / Reveal / Section / StatusBar
 └── data/
     ├── profile.ts        # hand-written content
     └── generated/        # fetched at build time

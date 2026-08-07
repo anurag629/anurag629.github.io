@@ -20,7 +20,7 @@ export const identity = {
   available: "Open to conversations about AI infrastructure.",
   bio: [
     "I started in data science, leading a team that built machine learning coursework, and kept drifting toward the layer underneath: the APIs, the pipelines, the parts that have to stay up. Now I work on LLM infrastructure — routing requests across providers, metering what they cost, and keeping agents from forgetting everything between sessions.",
-    "By day that is DataWars, where I moved the platform off server-heavy Docker execution and onto the client. By night it is CoderCops, a chat-first hiring product I am building on the same ideas: streaming agents, multi-model routing, and guardrails that hold when a stranger is typing into the box.",
+    "By day that is DataWars, where I moved the platform off server-heavy Docker execution and onto the client. By night it is CODERCOPS, a chat-first hiring product I am building on the same ideas: streaming agents, multi-model routing, and guardrails that hold when a stranger is typing into the box.",
     "The work I am proudest of is unglamorous. Three of my patches are in Django itself, and all three are test-infrastructure fixes nobody will ever see running.",
   ],
 };
@@ -40,7 +40,7 @@ export const links = {
 export const now = [
   {
     id: "codercops",
-    name: "CoderCops",
+    name: "CODERCOPS",
     kind: "company",
     role: "Founder",
     summary:
@@ -125,7 +125,7 @@ export const routes = [
 
 export const experience = [
   {
-    org: "CoderCops",
+    org: "CODERCOPS",
     title: "Founder",
     period: "2025 — now",
     current: true,
@@ -210,11 +210,6 @@ export const openSource = {
         "Allowed passing content_type=None to test Client and RequestFactory",
       href: "https://github.com/django/django/pull/20757",
     },
-    proposal: {
-      title: "GSoC 2026 proposal — migrating Django's integration tests to Playwright",
-      href: "https://forum.djangoproject.com/t/gsoc-2026-anurag-verma-interested-in-playwright-testing-migration/44276",
-      note: "Audited 15 test files and roughly 768 test methods to scope the migration.",
-    },
   },
   projects: [
     {
@@ -258,7 +253,7 @@ export const openSource = {
 };
 
 /**
- * PR volume, stated carefully. Most of the 1,492 are DataWars and CoderCops
+ * PR volume, stated carefully. Most of the 1,492 are DataWars and CODERCOPS
  * work repositories, which are private. Calling them "open source" would be
  * false, so the two numbers are shown separately and labelled for what they are.
  */
@@ -266,7 +261,7 @@ export const throughput = {
   totalMerged: 1492,
   thirdParty: 49,
   djangoCore: 3,
-  note: "Most of these are work repositories at DataWars and CoderCops. The third-party number counts only projects owned by neither.",
+  note: "Most of these are work repositories at DataWars and CODERCOPS. The third-party number counts only projects owned by neither.",
 };
 
 export const writing = {
@@ -298,7 +293,7 @@ export const writing = {
   elsewhere: [
     { label: "Mirrored on Hashnode", href: "https://anurag629.hashnode.dev" },
     {
-      label: "CoderCops engineering blog",
+      label: "CODERCOPS engineering blog",
       href: "https://blog.codercops.com/blog",
       note: "Built the pipeline behind it.",
     },

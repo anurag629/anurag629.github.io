@@ -28,59 +28,60 @@ const SIGNAL = "#FFA724";
 
 /* ------------------------------------------------------------------ OG ---- */
 
+// A terminal window, matching the page.
 const ogSvg = `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
-      <path d="M64 0H0V64" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
-    </pattern>
-  </defs>
-
   <rect width="1200" height="630" fill="${VOID}"/>
-  <rect width="1200" height="630" fill="url(#grid)"/>
 
-  <!-- Frame -->
-  <rect x="56" y="56" width="1088" height="518" fill="${PANEL}" fill-opacity="0.72" stroke="${RULE}"/>
-  <path d="M56 76V56h20M1144 554v20h-20" fill="none" stroke="#2B323D" stroke-width="2"/>
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1200" height="56" fill="${PANEL}"/>
+  <rect x="0" y="55" width="1200" height="1" fill="${RULE}"/>
+  <circle cx="34" cy="28" r="6" fill="none" stroke="#333b47" stroke-width="1.5"/>
+  <circle cx="58" cy="28" r="6" fill="none" stroke="#333b47" stroke-width="1.5"/>
+  <circle cx="82" cy="28" r="6" fill="none" stroke="#333b47" stroke-width="1.5"/>
+  <text x="112" y="34" font-family="IBM Plex Mono, monospace" font-size="17" fill="${DIM}">anurag@github: ~/portfolio — zsh</text>
 
-  <!-- Signal lead rule -->
-  <rect x="96" y="120" width="40" height="2" fill="${SIGNAL}"/>
-  <rect x="136" y="120" width="440" height="1" fill="${RULE}"/>
+  <!-- Prompt -->
+  <text x="64" y="128" font-family="IBM Plex Mono, monospace" font-size="26">
+    <tspan fill="#4ade80">anurag</tspan><tspan fill="#67707f">@</tspan><tspan fill="#4ade80">github</tspan><tspan fill="#6fd3e7">:~</tspan><tspan fill="${SIGNAL}">$</tspan><tspan fill="${TEXT}" xml:space="preserve"> neofetch</tspan>
+  </text>
 
-  <!-- Identity -->
-  <text x="96" y="106" font-family="IBM Plex Mono, monospace" font-size="17" letter-spacing="3" fill="${DIM}">AI INFRA ENGINEER · FOUNDER</text>
-  <text x="94" y="228" font-family="Martian Mono, ui-monospace, monospace" font-size="86" font-weight="700" letter-spacing="-3" fill="${TEXT}">ANURAG</text>
-  <text x="94" y="318" font-family="Martian Mono, ui-monospace, monospace" font-size="86" font-weight="700" letter-spacing="-3" fill="${TEXT}">VERMA</text>
-
-  <text x="96" y="380" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="27" fill="${SIGNAL}">I build the boring layer under the magic.</text>
-  <text x="96" y="422" font-family="IBM Plex Mono, monospace" font-size="19" fill="${DIM}">LLM gateways · agent memory · model routing</text>
-
-  <!-- Stat strip -->
-  <rect x="96" y="466" width="784" height="1" fill="${RULE}"/>
-  <g font-family="IBM Plex Mono, monospace">
-    <text x="96"  y="512" font-size="34" font-weight="600" fill="${SIGNAL}">3</text>
-    <text x="96"  y="538" font-size="14" letter-spacing="2" fill="${DIM}">DJANGO CORE</text>
-
-    <text x="286" y="512" font-size="34" font-weight="600" fill="${TEXT}">1,492</text>
-    <text x="286" y="538" font-size="14" letter-spacing="2" fill="${DIM}">PRS MERGED</text>
-
-    <text x="516" y="512" font-size="34" font-weight="600" fill="${TEXT}">${gh.totals.originalPublicRepos}</text>
-    <text x="516" y="538" font-size="14" letter-spacing="2" fill="${DIM}">PUBLIC REPOS</text>
-
-    <text x="716" y="512" font-size="34" font-weight="600" fill="${TEXT}">${gh.totals.stars}</text>
-    <text x="716" y="538" font-size="14" letter-spacing="2" fill="${DIM}">STARS</text>
+  <!-- Chip -->
+  <g font-family="IBM Plex Mono, monospace" font-size="21" fill="${SIGNAL}" xml:space="preserve">
+    <text x="64" y="188">   ┌─────────────────┐</text>
+    <text x="64" y="214">───┤ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ├───</text>
+    <text x="64" y="240">───┤ █             █ ├───</text>
+    <text x="64" y="266">───┤ █ A N U R A G █ ├───</text>
+    <text x="64" y="292">───┤ █             █ ├───</text>
+    <text x="64" y="318">───┤ ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ ├───</text>
+    <text x="64" y="344">   └───────┬─┬───────┘</text>
   </g>
 
+  <!-- Fields -->
+  <g font-family="IBM Plex Mono, monospace" font-size="21">
+    <text x="470" y="188"><tspan fill="${SIGNAL}" xml:space="preserve">role      · </tspan><tspan fill="${TEXT}">AI infra engineer · founder</tspan></text>
+    <text x="470" y="219"><tspan fill="${SIGNAL}" xml:space="preserve">location  · </tspan><tspan fill="${TEXT}">Uttar Pradesh, India</tspan></text>
+    <text x="470" y="250"><tspan fill="${SIGNAL}" xml:space="preserve">day job   · </tspan><tspan fill="${TEXT}">Full Stack Eng @ DataWars</tspan></text>
+    <text x="470" y="281"><tspan fill="${SIGNAL}" xml:space="preserve">night job · </tspan><tspan fill="${TEXT}">Founder @ CODERCOPS</tspan></text>
+    <text x="470" y="312"><tspan fill="${SIGNAL}" xml:space="preserve">focus     · </tspan><tspan fill="${TEXT}">llm gateways · agent memory</tspan></text>
+    <text x="470" y="343"><tspan fill="${SIGNAL}" xml:space="preserve">django    · </tspan><tspan fill="${TEXT}">3 patches merged into core</tspan></text>
+  </g>
+
+  <!-- cat README.md -->
+  <text x="64" y="418" font-family="IBM Plex Mono, monospace" font-size="26">
+    <tspan fill="#4ade80">anurag</tspan><tspan fill="#67707f">@</tspan><tspan fill="#4ade80">github</tspan><tspan fill="#6fd3e7">:~</tspan><tspan fill="${SIGNAL}">$</tspan><tspan fill="${TEXT}" xml:space="preserve"> cat README.md</tspan>
+  </text>
+  <text x="64" y="464" font-family="IBM Plex Mono, monospace" font-size="30" fill="${TEXT}">I build the boring layer under the magic.</text>
+
   <!-- Portrait frame (photo composited below) -->
-  <rect x="936" y="120" width="168" height="168" fill="none" stroke="${RULE}"/>
-  <path d="M936 140v-20h20M1104 268v20h-20" fill="none" stroke="${SIGNAL}" stroke-width="2"/>
+  <rect x="1000" y="392" width="136" height="136" fill="none" stroke="${RULE}"/>
 
-  <text x="936" y="330" font-family="IBM Plex Mono, monospace" font-size="16" fill="${TEXT}">@anurag629</text>
-  <text x="936" y="356" font-family="IBM Plex Mono, monospace" font-size="14" fill="${DIM}">Uttar Pradesh, India</text>
-
-  <circle cx="943" cy="392" r="4" fill="#4ADE80"/>
-  <text x="958" y="397" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="1" fill="${DIM}">OPEN TO CONVERSATIONS</text>
-
-  <text x="936" y="538" font-family="IBM Plex Mono, monospace" font-size="15" fill="${SIGNAL}">anurag629.github.io</text>
+  <!-- tmux status line -->
+  <rect x="0" y="574" width="1200" height="56" fill="${PANEL}"/>
+  <rect x="0" y="574" width="1200" height="1" fill="${RULE}"/>
+  <rect x="0" y="574" width="150" height="56" fill="${SIGNAL}"/>
+  <text x="34" y="609" font-family="IBM Plex Mono, monospace" font-size="20" fill="${VOID}">portfolio</text>
+  <text x="180" y="609" font-family="IBM Plex Mono, monospace" font-size="20"><tspan fill="${SIGNAL}" xml:space="preserve">0:identity* </tspan><tspan fill="#67707f" xml:space="preserve">  1:now  2:stack  3:work  4:trace  5:oss</tspan></text>
+  <text x="1136" y="609" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="20" fill="${DIM}">anurag629.github.io</text>
 </svg>`;
 
 /* -------------------------------------------------------------- favicon ---- */
@@ -91,8 +92,8 @@ const ogSvg = `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http
  */
 const iconSvg = (size) => `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 64 64">
   <rect width="64" height="64" fill="${SIGNAL}"/>
-  <path d="M14 47 L32 15 L50 47" fill="none" stroke="${VOID}" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
-  <rect x="22" y="37" width="20" height="7" fill="${VOID}"/>
+  <path d="M14 20 L30 32 L14 44" fill="none" stroke="${VOID}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="34" y="41" width="18" height="6" rx="1" fill="${VOID}"/>
 </svg>`;
 
 /* -------------------------------------------------------------- llms.txt --- */
@@ -105,7 +106,7 @@ const llms = `# Anurag Verma
 
 - Name: Anurag Verma
 - Role: AI infrastructure engineer and founder
-- Current: Full Stack Engineer at DataWars; Founder at CoderCops
+- Current: Full Stack Engineer at DataWars; Founder at CODERCOPS
 - Location: Uttar Pradesh, India
 - Site: ${SITE}
 - Email: akvermaav629@gmail.com
@@ -117,13 +118,11 @@ token metering, model routing, and persistent memory for coding agents. He
 started in data science, led a nine-person team building machine learning
 coursework at DataWars, then moved into the platform engineering underneath it.
 
-He has three patches merged into Django itself, all in the test infrastructure,
-and applied to Google Summer of Code 2026 to migrate Django's integration tests
-to Playwright.
+He has three patches merged into Django itself, all in the test infrastructure.
 
 ## Current work
 
-- CoderCops (founder) — chat-first hiring platform. Streaming agent over SSE,
+- CODERCOPS (founder) — chat-first hiring platform. Streaming agent over SSE,
   multi-model routing, prompt-injection filtering, confirmation-gated tools.
 - cortex-bridge (author) — persistent memory for coding agents, backed by
   Cognee. Survives context compaction. TypeScript.
@@ -132,7 +131,7 @@ to Playwright.
 
 ## Experience
 
-- Founder, CoderCops (2025 — present)
+- Founder, CODERCOPS (2025 — present)
 - Full Stack Engineer, DataWars (Jul 2025 — present). Built a browser-based
   coding environment running Python and JavaScript client-side; moved the
   platform off Docker-per-session execution, cutting operating cost ~35%.
@@ -150,7 +149,7 @@ to Playwright.
 - Orgs: FOSSASIA, EddieHubCommunity, Py-Contributors, recodehive.
 
 Total merged pull requests: 1,492, of which 49 are in third-party
-repositories. The remainder are DataWars and CoderCops work repositories.
+repositories. The remainder are DataWars and CODERCOPS work repositories.
 
 ## Stack
 
@@ -185,7 +184,7 @@ and Python, written across 2022 and 2023.
 - GitHub: https://github.com/anurag629
 - LinkedIn: https://www.linkedin.com/in/anurag629
 - X: https://x.com/anurag_629
-- CoderCops: https://www.codercops.com
+- CODERCOPS: https://www.codercops.com
 - dev.to: https://dev.to/anurag629
 - Kaggle: https://www.kaggle.com/anurag629
 `;
@@ -212,14 +211,14 @@ async function main() {
   // OG image, with the portrait composited into its frame.
   const base = await sharp(Buffer.from(ogSvg)).png().toBuffer();
   const portrait = await sharp(join(PUBLIC, "profile.png"))
-    .resize(168, 168, { fit: "cover" })
+    .resize(136, 136, { fit: "cover" })
     .greyscale()
     .modulate({ brightness: 1.04 })
     .png()
     .toBuffer();
 
   const og = await sharp(base)
-    .composite([{ input: portrait, left: 936, top: 120 }])
+    .composite([{ input: portrait, left: 1000, top: 392 }])
     .png()
     .toBuffer();
 

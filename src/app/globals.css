@@ -3,37 +3,41 @@
 @tailwind utilities;
 
 /*
- * "Instrument panel" — cold near-black, amber signal, hairline rules.
- * The reference is a routing console, not a hacker terminal: amber reads as a
- * meter, ice-cyan as a trace, green only ever as a merged/ok state.
+ * A terminal session.
  *
- * Every foreground/background pair below was checked against WCAG AA.
- * --dimmer is decorative only (3.9:1) and must never carry body text.
+ * Amber phosphor rather than the usual green: DEC VT220 and Wyse terminals
+ * shipped amber, it reads warmer, and it clears WCAG AA at 10:1 where a bright
+ * green does not without going neon.
+ *
+ * Every foreground/background pair below was checked against AA in both
+ * themes. --dimmer is decorative only (3.9:1) and must never carry body text.
  */
 
 @layer base {
   :root {
-    --void: #0a0c10;
-    --panel: #11141a;
+    --void: #08090c;
+    --panel: #0e1014;
     --rule: #1e232c;
-    --rule-bright: #2b323d;
+    --rule-bright: #333b47;
     --text: #e8ebf0;
     --dim: #7f8a9e;
     --dimmer: #67707f;
     --signal: #ffa724;
     --trace: #6fd3e7;
     --ok: #4ade80;
-    --on-signal: #0a0c10;
+    --on-signal: #08090c;
 
-    --grid: rgba(255, 255, 255, 0.028);
-    --frame-radius: 2px;
+    /* Phosphor bloom on the amber only. Off in light mode. */
+    --glow: 0 0 12px rgba(255, 167, 36, 0.28);
+    --scanline: rgba(255, 255, 255, 0.017);
+    --scanline-size: 3px;
   }
 
   :root[data-theme="light"] {
-    --void: #f2f4f7;
+    --void: #f4f5f7;
     --panel: #ffffff;
     --rule: #d6dbe3;
-    --rule-bright: #b9c1cd;
+    --rule-bright: #aab3c0;
     --text: #0e1218;
     --dim: #4c5666;
     --dimmer: #6b7482;
@@ -42,7 +46,8 @@
     --ok: #116a34;
     --on-signal: #ffffff;
 
-    --grid: rgba(14, 18, 24, 0.045);
+    --glow: none;
+    --scanline: transparent;
   }
 
   * {
@@ -51,8 +56,7 @@
 
   html {
     scroll-behavior: smooth;
-    /* Sections are scroll targets; keep them clear of the fixed header. */
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 4.5rem;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -60,11 +64,27 @@
     background-color: var(--void);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
-    /* Engineering-paper grid. Two hairlines, not a dot screen. */
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 64px 64px;
+    font-variant-ligatures: none;
+  }
+
+  /*
+   * CRT scanlines. Fixed overlay so it does not scroll with content, very low
+   * contrast so it reads as texture rather than stripes, and disabled entirely
+   * in light mode and under reduced motion preferences.
+   */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--scanline) 0,
+      var(--scanline) 1px,
+      transparent 1px,
+      transparent var(--scanline-size)
+    );
   }
 
   ::selection {
@@ -72,107 +92,127 @@
     color: var(--on-signal);
   }
 
-  /*
-   * The old site had no focus styles at all — Tailwind preflight strips the
-   * default outline and nothing put one back, so keyboard users saw nothing.
-   */
   :focus-visible {
     outline: 2px solid var(--signal);
-    outline-offset: 3px;
-    border-radius: 1px;
+    outline-offset: 2px;
   }
 
-  /* Only suppress the ring for pointer users, never for keyboard. */
   :focus:not(:focus-visible) {
     outline: none;
   }
 }
 
 @layer components {
-  /* ---- Frame: the repeating structural unit -------------------------- */
+  /* ---- Terminal chrome ------------------------------------------------ */
 
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--panel);
+    padding: 0.5rem 0.75rem;
+  }
+
+  .term-dot {
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--rule-bright);
+    border-radius: 50%;
+    flex: none;
+  }
+
+  /* Panels are terminal output blocks: square, hairline, no shadow. */
   .frame {
     position: relative;
     border: 1px solid var(--rule);
-    background: color-mix(in srgb, var(--panel) 72%, transparent);
-    border-radius: var(--frame-radius);
-  }
-
-  /* Corner ticks. Drawn with two pseudo-elements, one per diagonal pair. */
-  .frame::before,
-  .frame::after {
-    content: "";
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    border-color: var(--rule-bright);
-    border-style: solid;
-    pointer-events: none;
-  }
-
-  .frame::before {
-    top: -1px;
-    left: -1px;
-    border-width: 1px 0 0 1px;
-  }
-
-  .frame::after {
-    bottom: -1px;
-    right: -1px;
-    border-width: 0 1px 1px 0;
+    background: var(--panel);
   }
 
   .frame-hover {
     transition:
-      border-color 200ms ease,
-      background-color 200ms ease;
+      border-color 160ms ease,
+      background-color 160ms ease;
   }
 
   .frame-hover:hover {
-    border-color: var(--rule-bright);
-    background: color-mix(in srgb, var(--panel) 100%, transparent);
+    border-color: var(--signal);
   }
 
-  /* ---- Labels and rules ---------------------------------------------- */
+  /* ---- Prompt --------------------------------------------------------- */
+
+  .prompt {
+    font-family: var(--font-plex-mono), ui-monospace, monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .prompt-user {
+    color: var(--ok);
+  }
+
+  .prompt-path {
+    color: var(--trace);
+  }
+
+  .prompt-sigil {
+    color: var(--signal);
+    text-shadow: var(--glow);
+  }
+
+  .prompt-cmd {
+    color: var(--text);
+  }
+
+  .prompt-flag {
+    color: var(--dim);
+  }
+
+  /* Block cursor. Steady under reduced motion. */
+  .cursor {
+    display: inline-block;
+    width: 0.55em;
+    height: 1.05em;
+    margin-left: 0.15em;
+    background: var(--signal);
+    vertical-align: text-bottom;
+    animation: blink 1.1s steps(1) infinite;
+  }
+
+  /* ---- Text roles ----------------------------------------------------- */
 
   .label {
     font-family: var(--font-plex-mono), monospace;
     font-size: 0.6875rem;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--dim);
   }
 
   .display {
-    font-family: var(--font-martian), monospace;
-    letter-spacing: -0.03em;
-    line-height: 0.95;
+    font-family: var(--font-martian), ui-monospace, monospace;
+    letter-spacing: -0.02em;
   }
 
-  .hairline {
-    height: 1px;
-    background: var(--rule);
+  .glow {
+    text-shadow: var(--glow);
   }
 
-  /* Signal-coloured lead rule for section headers. */
-  .tick-rule {
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      var(--signal) 0,
-      var(--signal) 28px,
-      var(--rule) 28px,
-      var(--rule) 100%
-    );
+  /* ASCII art blocks: preserve spacing, never wrap, never read aloud. */
+  .ascii {
+    font-family: var(--font-plex-mono), ui-monospace, monospace;
+    white-space: pre;
+    line-height: 1.15;
+    letter-spacing: 0;
+    tab-size: 4;
   }
 
-  /* ---- Status pips ----------------------------------------------------- */
+  /* ---- Status pips ---------------------------------------------------- */
 
   .pip {
     display: inline-block;
     width: 6px;
     height: 6px;
-    border-radius: 50%;
     flex: none;
   }
 
@@ -185,31 +225,28 @@
   .pip-dim {
     background: var(--dimmer);
   }
-
-  /* Only genuinely live things pulse. */
   .pip-live {
     background: var(--ok);
     animation: pulse 2.4s ease-in-out infinite;
   }
 
-  /* ---- Links ----------------------------------------------------------- */
+  /* ---- Links ---------------------------------------------------------- */
 
   .link {
     color: var(--trace);
-    text-decoration: none;
-    box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--trace) 35%, transparent);
-    transition:
-      box-shadow 160ms ease,
-      color 160ms ease;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+    transition: color 140ms ease;
   }
 
   .link:hover {
-    box-shadow: inset 0 -1px 0 var(--trace);
+    color: var(--signal);
+    text-decoration-style: solid;
   }
 
-  /* Hit area for small inline links. Centres a box of at least 44x44 on the
-     element so mobile taps clear the target-size guideline without changing
-     how the text looks. */
+  /* Centres a box of at least 44x44 on small inline links so mobile taps
+     clear the target-size guideline without changing how the text looks. */
   .tap {
     position: relative;
   }
@@ -227,17 +264,18 @@
   }
 }
 
-@layer utilities {
-  .grid-lines {
-    background-image: linear-gradient(90deg, var(--rule) 1px, transparent 1px);
-  }
+/* ---- Motion ----------------------------------------------------------- */
 
-  .text-balance {
-    text-wrap: balance;
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
   }
 }
-
-/* ---- Motion ----------------------------------------------------------- */
 
 @keyframes pulse {
   0%,
@@ -246,17 +284,6 @@
   }
   50% {
     opacity: 0.35;
-  }
-}
-
-@keyframes resolve {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
   }
 }
 
@@ -270,16 +297,15 @@
 }
 
 /*
- * Reveal on scroll. Content is always in the DOM and readable; these classes
- * only animate opacity/transform. If JS never runs, `.reveal` without
- * `.is-in` still resolves via the fallback below.
+ * Output printing to the screen: a short rise, no horizontal drift, so it
+ * reads as a line arriving rather than a marketing animation.
  */
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(6px);
   transition:
-    opacity 520ms cubic-bezier(0.2, 0.7, 0.3, 1),
-    transform 520ms cubic-bezier(0.2, 0.7, 0.3, 1);
+    opacity 320ms steps(6, end),
+    transform 320ms cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
 .reveal.is-in {
@@ -300,7 +326,7 @@
 
 .meter-fill {
   transform-origin: left;
-  animation: sweep 900ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  animation: sweep 700ms steps(12, end) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -321,7 +347,18 @@
     transform: none;
   }
 
+  .cursor {
+    animation: none;
+    opacity: 1;
+  }
+
   .meter-fill {
     animation: none;
+  }
+
+  /* Scanlines are texture, not motion, but they add visual noise that some
+     people with motion sensitivity also find uncomfortable. */
+  body::before {
+    display: none;
   }
 }

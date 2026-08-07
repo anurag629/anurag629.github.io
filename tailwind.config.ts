@@ -26,9 +26,11 @@ const config: Config = {
         "on-signal": "var(--on-signal)",
       },
       fontFamily: {
+        // No proportional face anywhere. Martian Mono is the display accent,
+        // Plex Mono carries everything else.
         display: ["var(--font-martian)", "ui-monospace", "monospace"],
         mono: ["var(--font-plex-mono)", "ui-monospace", "monospace"],
-        sans: ["var(--font-plex-sans)", "system-ui", "sans-serif"],
+        sans: ["var(--font-plex-mono)", "ui-monospace", "monospace"],
       },
       fontSize: {
         "2xs": ["0.6875rem", { lineHeight: "1rem" }],

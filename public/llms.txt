@@ -6,7 +6,7 @@
 
 - Name: Anurag Verma
 - Role: AI infrastructure engineer and founder
-- Current: Full Stack Engineer at DataWars; Founder at CoderCops
+- Current: Full Stack Engineer at DataWars; Founder at CODERCOPS
 - Location: Uttar Pradesh, India
 - Site: https://anurag629.github.io
 - Email: akvermaav629@gmail.com
@@ -18,13 +18,11 @@ token metering, model routing, and persistent memory for coding agents. He
 started in data science, led a nine-person team building machine learning
 coursework at DataWars, then moved into the platform engineering underneath it.
 
-He has three patches merged into Django itself, all in the test infrastructure,
-and applied to Google Summer of Code 2026 to migrate Django's integration tests
-to Playwright.
+He has three patches merged into Django itself, all in the test infrastructure.
 
 ## Current work
 
-- CoderCops (founder) — chat-first hiring platform. Streaming agent over SSE,
+- CODERCOPS (founder) — chat-first hiring platform. Streaming agent over SSE,
   multi-model routing, prompt-injection filtering, confirmation-gated tools.
 - cortex-bridge (author) — persistent memory for coding agents, backed by
   Cognee. Survives context compaction. TypeScript.
@@ -33,7 +31,7 @@ to Playwright.
 
 ## Experience
 
-- Founder, CoderCops (2025 — present)
+- Founder, CODERCOPS (2025 — present)
 - Full Stack Engineer, DataWars (Jul 2025 — present). Built a browser-based
   coding environment running Python and JavaScript client-side; moved the
   platform off Docker-per-session execution, cutting operating cost ~35%.
@@ -51,7 +49,7 @@ to Playwright.
 - Orgs: FOSSASIA, EddieHubCommunity, Py-Contributors, recodehive.
 
 Total merged pull requests: 1,492, of which 49 are in third-party
-repositories. The remainder are DataWars and CoderCops work repositories.
+repositories. The remainder are DataWars and CODERCOPS work repositories.
 
 ## Stack
 
@@ -83,6 +81,6 @@ and Python, written across 2022 and 2023.
 - GitHub: https://github.com/anurag629
 - LinkedIn: https://www.linkedin.com/in/anurag629
 - X: https://x.com/anurag_629
-- CoderCops: https://www.codercops.com
+- CODERCOPS: https://www.codercops.com
 - dev.to: https://dev.to/anurag629
 - Kaggle: https://www.kaggle.com/anurag629
