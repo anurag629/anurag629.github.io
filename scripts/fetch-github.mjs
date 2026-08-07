@@ -21,6 +21,13 @@ const USER = "anurag629";
 const OUT = join(process.cwd(), "src/data/generated/github.json");
 const TOKEN = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || "";
 
+/**
+ * CI sets this. Locally the snapshot fallback is a convenience; in a deploy it
+ * would mean quietly publishing stale numbers, which is the exact failure this
+ * script exists to prevent, so there it is a hard error instead.
+ */
+const REQUIRE_FRESH = process.env.REQUIRE_FRESH_GITHUB_DATA === "1";
+
 /** Repos to surface in the Work section, in the order they should appear. */
 const FEATURED = [
   "50-Days-Data-Science",
@@ -160,6 +167,12 @@ async function main() {
   }
 
   if (!fresh) {
+    if (REQUIRE_FRESH) {
+      throw new Error(
+        `GitHub fetch failed and REQUIRE_FRESH_GITHUB_DATA is set. ` +
+          `Refusing to publish the snapshot from ${snapshot.fetchedAt}.`,
+      );
+    }
     console.log(`  ~ using snapshot from ${snapshot.fetchedAt} (fetch failed)`);
     return;
   }
@@ -167,6 +180,12 @@ async function main() {
   // Keep snapshot contributions when GraphQL was unavailable, so an
   // unauthenticated local build never blanks out the chart.
   if (!fresh.contributions) {
+    if (REQUIRE_FRESH) {
+      throw new Error(
+        "Contribution calendar needs a token (GraphQL) and none worked. " +
+          "Set GITHUB_TOKEN, or unset REQUIRE_FRESH_GITHUB_DATA to allow the snapshot.",
+      );
+    }
     fresh.contributions = snapshot?.contributions ?? [];
     if (fresh.contributions.length) {
       console.log("  ~ no token: contribution counts kept from snapshot");

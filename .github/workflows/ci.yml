@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck and lint
+        run: npm run check
+
+      # Runs the same fetch + strict mode the deploy uses, so a token or API
+      # problem shows up on the pull request instead of breaking a deploy.
+      - name: Build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REQUIRE_FRESH_GITHUB_DATA: "1"
+        run: npm run build
+
+      - name: Check the build output
+        run: |
+          fail=0
+
+          if grep -rIqE "(Bearer [A-Za-z0-9_-]{20,}|upstash|sk-[A-Za-z0-9]{20,})" out/; then
+            echo "::error::A credential-shaped string is present in the build output."
+            fail=1
+          fi
+
+          for name in codercops-api codercops-client codercops-app codercops-www \
+                      signal-tracker quantized-router dw-teams dw-api prooflater \
+                      querylytic codercops-agency; do
+            if grep -rIiq "$name" out/; then
+              echo "::error::Private repository name '$name' leaked into the build output."
+              fail=1
+            fi
+          done
+
+          if [ ! -s out/index.html ]; then
+            echo "::error::out/index.html is missing or empty."
+            fail=1
+          fi
+
+          exit $fail
