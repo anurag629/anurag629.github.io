@@ -2,87 +2,326 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * "Instrument panel" — cold near-black, amber signal, hairline rules.
+ * The reference is a routing console, not a hacker terminal: amber reads as a
+ * meter, ice-cyan as a trace, green only ever as a merged/ok state.
+ *
+ * Every foreground/background pair below was checked against WCAG AA.
+ * --dimmer is decorative only (3.9:1) and must never carry body text.
+ */
+
 @layer base {
+  :root {
+    --void: #0a0c10;
+    --panel: #11141a;
+    --rule: #1e232c;
+    --rule-bright: #2b323d;
+    --text: #e8ebf0;
+    --dim: #7f8a9e;
+    --dimmer: #67707f;
+    --signal: #ffa724;
+    --trace: #6fd3e7;
+    --ok: #4ade80;
+    --on-signal: #0a0c10;
+
+    --grid: rgba(255, 255, 255, 0.028);
+    --frame-radius: 2px;
+  }
+
+  :root[data-theme="light"] {
+    --void: #f2f4f7;
+    --panel: #ffffff;
+    --rule: #d6dbe3;
+    --rule-bright: #b9c1cd;
+    --text: #0e1218;
+    --dim: #4c5666;
+    --dimmer: #6b7482;
+    --signal: #8a4b00;
+    --trace: #005e78;
+    --ok: #116a34;
+    --on-signal: #ffffff;
+
+    --grid: rgba(14, 18, 24, 0.045);
+  }
+
+  * {
+    border-color: var(--rule);
+  }
+
   html {
     scroll-behavior: smooth;
+    /* Sections are scroll targets; keep them clear of the fixed header. */
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-dark-base text-zinc-50 antialiased;
-    background-image: radial-gradient(
-      rgba(255, 255, 255, 0.03) 1px,
-      transparent 1px
-    );
-    background-size: 24px 24px;
+    background-color: var(--void);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    /* Engineering-paper grid. Two hairlines, not a dot screen. */
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 64px 64px;
   }
 
   ::selection {
-    @apply bg-accent-cyan/30 text-zinc-50;
+    background: var(--signal);
+    color: var(--on-signal);
+  }
+
+  /*
+   * The old site had no focus styles at all — Tailwind preflight strips the
+   * default outline and nothing put one back, so keyboard users saw nothing.
+   */
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* Only suppress the ring for pointer users, never for keyboard. */
+  :focus:not(:focus-visible) {
+    outline: none;
   }
 }
 
 @layer components {
-  /* Glass card */
-  .glass-card {
-    @apply rounded-xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl;
+  /* ---- Frame: the repeating structural unit -------------------------- */
+
+  .frame {
+    position: relative;
+    border: 1px solid var(--rule);
+    background: color-mix(in srgb, var(--panel) 72%, transparent);
+    border-radius: var(--frame-radius);
   }
 
-  .glass-card:hover {
-    @apply border-white/[0.12];
+  /* Corner ticks. Drawn with two pseudo-elements, one per diagonal pair. */
+  .frame::before,
+  .frame::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-color: var(--rule-bright);
+    border-style: solid;
+    pointer-events: none;
   }
 
-  /* Gradient text */
-  .gradient-text {
-    @apply bg-gradient-to-r from-accent-cyan to-accent-violet bg-clip-text text-transparent;
+  .frame::before {
+    top: -1px;
+    left: -1px;
+    border-width: 1px 0 0 1px;
   }
 
-  /* Code block styling */
-  .code-block {
-    @apply rounded-lg border border-white/[0.08] bg-dark-card p-4 font-mono text-sm;
+  .frame::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 1px 1px 0;
   }
 
-  .code-block .keyword {
-    @apply text-accent-violet;
+  .frame-hover {
+    transition:
+      border-color 200ms ease,
+      background-color 200ms ease;
   }
 
-  .code-block .string {
-    @apply text-accent-green;
+  .frame-hover:hover {
+    border-color: var(--rule-bright);
+    background: color-mix(in srgb, var(--panel) 100%, transparent);
   }
 
-  .code-block .function {
-    @apply text-accent-cyan;
+  /* ---- Labels and rules ---------------------------------------------- */
+
+  .label {
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
   }
 
-  /* Glow border on hover */
-  .glow-border:hover {
-    box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.3),
-      0 0 20px -5px rgba(6, 182, 212, 0.2);
+  .display {
+    font-family: var(--font-martian), monospace;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
   }
 
-  /* Section divider */
-  .section-divider {
-    @apply h-px w-full bg-gradient-to-r from-transparent via-accent-cyan/50 to-transparent;
+  .hairline {
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* Signal-coloured lead rule for section headers. */
+  .tick-rule {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      var(--signal) 0,
+      var(--signal) 28px,
+      var(--rule) 28px,
+      var(--rule) 100%
+    );
+  }
+
+  /* ---- Status pips ----------------------------------------------------- */
+
+  .pip {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex: none;
+  }
+
+  .pip-signal {
+    background: var(--signal);
+  }
+  .pip-ok {
+    background: var(--ok);
+  }
+  .pip-dim {
+    background: var(--dimmer);
+  }
+
+  /* Only genuinely live things pulse. */
+  .pip-live {
+    background: var(--ok);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  /* ---- Links ----------------------------------------------------------- */
+
+  .link {
+    color: var(--trace);
+    text-decoration: none;
+    box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--trace) 35%, transparent);
+    transition:
+      box-shadow 160ms ease,
+      color 160ms ease;
+  }
+
+  .link:hover {
+    box-shadow: inset 0 -1px 0 var(--trace);
+  }
+
+  /* Hit area for small inline links. Centres a box of at least 44x44 on the
+     element so mobile taps clear the target-size guideline without changing
+     how the text looks. */
+  .tap {
+    position: relative;
+  }
+
+  .tap::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    min-width: 44px;
+    min-height: 44px;
   }
 }
 
 @layer utilities {
-  .animation-delay-100 {
-    animation-delay: 100ms;
+  .grid-lines {
+    background-image: linear-gradient(90deg, var(--rule) 1px, transparent 1px);
   }
 
-  .animation-delay-200 {
-    animation-delay: 200ms;
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ---- Motion ----------------------------------------------------------- */
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes resolve {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sweep {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/*
+ * Reveal on scroll. Content is always in the DOM and readable; these classes
+ * only animate opacity/transform. If JS never runs, `.reveal` without
+ * `.is-in` still resolves via the fallback below.
+ */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 520ms cubic-bezier(0.2, 0.7, 0.3, 1),
+    transform 520ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/*
+ * Two ways content can never be hidden by a script that did not run:
+ * `.no-js` covers JavaScript being disabled, and `.reveal-all` is set by a
+ * timeout in the head so a slow or failed hydration still shows the page.
+ */
+.no-js .reveal,
+.reveal-all .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.meter-fill {
+  transform-origin: left;
+  animation: sweep 900ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 
-  .animation-delay-300 {
-    animation-delay: 300ms;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 
-  .animation-delay-400 {
-    animation-delay: 400ms;
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 
-  .animation-delay-500 {
-    animation-delay: 500ms;
+  .meter-fill {
+    animation: none;
   }
 }

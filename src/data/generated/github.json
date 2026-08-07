@@ -1,0 +1,221 @@
+{
+  "fetchedAt": "2026-08-07",
+  "user": {
+    "followers": 93,
+    "publicRepos": 128
+  },
+  "totals": {
+    "originalPublicRepos": 71,
+    "stars": 157
+  },
+  "featured": [
+    {
+      "name": "50-Days-Data-Science",
+      "fullName": "anurag629/50-Days-Data-Science",
+      "description": "A 50-Day Guide to Becoming a Data Scientist with Python, SQL, and Machine Learning",
+      "language": "Jupyter Notebook",
+      "stars": 72,
+      "forks": 18,
+      "url": "https://github.com/anurag629/50-Days-Data-Science",
+      "homepage": "https://anurag629.github.io/50-Days-Data-Science/",
+      "topics": [
+        "data-science",
+        "learning-resources",
+        "machine-learning",
+        "numpy",
+        "pandas",
+        "python",
+        "sql"
+      ],
+      "pushedAt": "2024-06-09"
+    },
+    {
+      "name": "cortex-bridge",
+      "fullName": "anurag629/cortex-bridge",
+      "description": "Persistent memory for OpenCode, backed by Cognee. Captures agent activity, recalls across sessions, survives compaction, and learns from feedback. Self-hosted or Cognee Cloud.",
+      "language": "TypeScript",
+      "stars": 4,
+      "forks": 0,
+      "url": "https://github.com/anurag629/cortex-bridge",
+      "homepage": null,
+      "topics": [],
+      "pushedAt": "2026-07-05"
+    },
+    {
+      "name": "ai_interview",
+      "fullName": "anurag629/ai_interview",
+      "description": "A job interview preparation platform powered by Vapi AI Voice agents",
+      "language": "TypeScript",
+      "stars": 4,
+      "forks": 0,
+      "url": "https://github.com/anurag629/ai_interview",
+      "homepage": null,
+      "topics": [
+        "ai",
+        "interview-preparation",
+        "nextjs",
+        "vapi",
+        "voice-agent"
+      ],
+      "pushedAt": "2025-07-31"
+    },
+    {
+      "name": "lore",
+      "fullName": "anurag629/lore",
+      "description": "Decentralized IP asset management platform on Story Protocol with AI-powered content generation",
+      "language": null,
+      "stars": 4,
+      "forks": 0,
+      "url": "https://github.com/anurag629/lore",
+      "homepage": null,
+      "topics": [
+        "ai",
+        "decentralized",
+        "django",
+        "intellectual-property",
+        "nextjs",
+        "story-protocol",
+        "web3"
+      ],
+      "pushedAt": "2025-12-23"
+    },
+    {
+      "name": "omega-server",
+      "fullName": "anurag629/omega-server",
+      "description": "Django backend for AI-powered Manim animation generation with Docker-based script execution",
+      "language": "Python",
+      "stars": 2,
+      "forks": 0,
+      "url": "https://github.com/anurag629/omega-server",
+      "homepage": null,
+      "topics": [
+        "ai",
+        "animation",
+        "azure-openai",
+        "django",
+        "docker",
+        "gemini",
+        "manim",
+        "python"
+      ],
+      "pushedAt": "2025-05-31"
+    },
+    {
+      "name": "netra_ai_surviellance",
+      "fullName": "anurag629/netra_ai_surviellance",
+      "description": "Advanced computer vision surveillance system with real-time face recognition and location tracking",
+      "language": "Python",
+      "stars": 2,
+      "forks": 0,
+      "url": "https://github.com/anurag629/netra_ai_surviellance",
+      "homepage": null,
+      "topics": [
+        "computer-vision",
+        "deep-learning",
+        "face-recognition",
+        "opencv",
+        "python",
+        "surveillance"
+      ],
+      "pushedAt": "2024-07-24"
+    },
+    {
+      "name": "Human_Action_Recognition",
+      "fullName": "anurag629/Human_Action_Recognition",
+      "description": "Part-based Graph Convolutional Network (PB-GCN) for action recognition on UCF50 dataset",
+      "language": "Jupyter Notebook",
+      "stars": 6,
+      "forks": 0,
+      "url": "https://github.com/anurag629/Human_Action_Recognition",
+      "homepage": null,
+      "topics": [
+        "action-recognition",
+        "computer-vision",
+        "deep-learning",
+        "gcn",
+        "python",
+        "pytorch"
+      ],
+      "pushedAt": "2024-07-17"
+    },
+    {
+      "name": "100DaysOfAIEngineer",
+      "fullName": "anurag629/100DaysOfAIEngineer",
+      "description": "A 100-day project-driven roadmap to becoming an AI Engineer with hands-on projects",
+      "language": "Python",
+      "stars": 3,
+      "forks": 3,
+      "url": "https://github.com/anurag629/100DaysOfAIEngineer",
+      "homepage": "https://anurag629.github.io/100DaysOfAIEngineer/",
+      "topics": [
+        "ai",
+        "deep-learning",
+        "learning-resources",
+        "machine-learning",
+        "python",
+        "roadmap"
+      ],
+      "pushedAt": "2025-11-13"
+    },
+    {
+      "name": "chatcops",
+      "fullName": "codercops/chatcops",
+      "description": "Universal embeddable AI chatbot widget. Add an AI assistant to any website with a single script tag. Multi-provider (Claude, OpenAI, Gemini), lead capture, knowledge base, i18n.",
+      "language": "TypeScript",
+      "stars": 11,
+      "forks": 4,
+      "url": "https://github.com/codercops/chatcops",
+      "homepage": "https://chat.codercops.com",
+      "topics": [],
+      "pushedAt": "2026-04-10"
+    },
+    {
+      "name": "toolbelt",
+      "fullName": "codercops/toolbelt",
+      "description": "A developer's toolbelt: fast, privacy-first browser tools (JSON formatter, JWT decoder, Base64, invoice generator).",
+      "language": "TypeScript",
+      "stars": 1,
+      "forks": 1,
+      "url": "https://github.com/codercops/toolbelt",
+      "homepage": "https://tools.codercops.com",
+      "topics": [
+        "base64",
+        "developer-tools",
+        "json",
+        "jwt",
+        "nextjs",
+        "privacy",
+        "pwa",
+        "tailwindcss",
+        "typescript"
+      ],
+      "pushedAt": "2026-08-06"
+    }
+  ],
+  "contributions": [
+    {
+      "year": 2021,
+      "total": 164
+    },
+    {
+      "year": 2022,
+      "total": 354
+    },
+    {
+      "year": 2023,
+      "total": 1802
+    },
+    {
+      "year": 2024,
+      "total": 1602
+    },
+    {
+      "year": 2025,
+      "total": 2558
+    },
+    {
+      "year": 2026,
+      "total": 3689
+    }
+  ]
+}
