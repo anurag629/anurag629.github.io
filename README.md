@@ -1,20 +1,21 @@
 # anurag629.github.io
 
-One page with my photo and the links where people can reach me. It is built to be opened from a QR code.
+One page with my photo, a short intro, and the links where people can reach me. It is built to be opened from a QR code.
 
 **Live:** [anurag629.github.io](https://anurag629.github.io)
 
 ## QR code
 
-The QR codes point to `https://anurag629.github.io`. They are version 3 (29 by 29 modules) at error correction level Q, so they still scan with some glare or damage. Show them at 150px or larger.
+Scan it to open [anurag629.github.io](https://anurag629.github.io).
 
-| File | Use |
-| --- | --- |
-| [`docs/qr.png`](docs/qr.png) | Black on white, 1184px. The safest choice for any scanner. |
-| [`docs/qr.svg`](docs/qr.svg) | Same code as a vector, for print. |
-| [`docs/qr-amber.png`](docs/qr-amber.png) | Dark on amber, to match the site. |
+| Black on white (scans best) | Amber (matches the site) |
+| :---: | :---: |
+| <img src="docs/qr.png" width="220" alt="QR code for anurag629.github.io, black on white"> | <img src="docs/qr-amber.png" width="220" alt="QR code for anurag629.github.io, dark on amber"> |
+| Download [PNG](https://github.com/anurag629/anurag629.github.io/raw/main/docs/qr.png) or [SVG](https://github.com/anurag629/anurag629.github.io/raw/main/docs/qr.svg) | Download [PNG](https://github.com/anurag629/anurag629.github.io/raw/main/docs/qr-amber.png) or [SVG](https://github.com/anurag629/anurag629.github.io/raw/main/docs/qr-amber.svg) |
 
-They are also served from the live site, for example `https://anurag629.github.io/qr.png`.
+The PNGs are 1184px and the SVGs scale to any size, so use the SVG for print. Each link opens the full file; save it from there. Show the code at 150px or larger so phones can read it.
+
+They are version 3 codes (29 by 29 modules) at error correction level Q, so they still scan through some glare or a scratched screen. The same files are on the live site too, for example `https://anurag629.github.io/qr.png`.
 
 ## Changing a link
 
