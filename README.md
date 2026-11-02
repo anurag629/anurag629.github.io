@@ -1,90 +1,40 @@
 # anurag629.github.io
 
-Personal site for Anurag Verma. Single page, statically exported, deployed to
-GitHub Pages.
+One page with my photo and the links where people can reach me. It is built to be opened from a QR code.
 
 **Live:** [anurag629.github.io](https://anurag629.github.io)
 
-## Design
+## QR code
 
-The page is a terminal session. A window title bar at the top, a tmux-style
-status line at the bottom that tracks real scroll position, and every section
-introduced by the command that would produce it — `neofetch`, `ls -la ~/repos`,
-`git log --graph --oneline`, `gh pr list --author @me --state merged`.
+The QR codes point to `https://anurag629.github.io`. They are version 3 (29 by 29 modules) at error correction level Q, so they still scan with some glare or damage. Show them at 150px or larger.
 
-Amber phosphor rather than the usual green. DEC VT220 and Wyse terminals
-shipped amber, it reads warmer, and it clears WCAG AA at 10:1 where a bright
-green does not without going neon. Scanlines are a fixed low-contrast overlay,
-disabled in light mode and under `prefers-reduced-motion`.
+| File | Use |
+| --- | --- |
+| [`site/qr.png`](site/qr.png) | Black on white, 1184px. The safest choice for any scanner. |
+| [`site/qr.svg`](site/qr.svg) | Same code as a vector, for print. |
+| [`site/qr-amber.png`](site/qr-amber.png) | Dark on amber, to match the site. |
 
-Everything is monospace: Martian Mono as the display accent, IBM Plex Mono for
-the rest. The identity block reuses the chip ASCII from Anurag's own GitHub
-profile README. A light theme ships behind the toggle in the title bar and
-persists in `localStorage`.
+They are also served from the live site, for example `https://anurag629.github.io/qr.png`.
 
-Every foreground/background pair in both themes clears WCAG AA.
+## Changing a link
 
-## Data
+Everything is in [`site/index.html`](site/index.html). Each link is one `<li>` block. Copy a block, change the `href`, the name and the handle, and push to `main`. Icons come from [Simple Icons](https://simpleicons.org).
 
-Nothing countable is hard-coded. `scripts/fetch-github.mjs` runs before every
-build and pulls repositories, stars, followers and the contribution calendar
-into `src/data/generated/github.json`, which is committed and doubles as the
-fallback if the API is unreachable. `scripts/generate-assets.mjs` then derives
-the OG image, favicons, `llms.txt` and `sitemap.xml` from that same data, so
-they cannot drift apart.
-
-Hand-written content lives in `src/data/profile.ts`. Two rules apply there:
-
-- Every pull request linked from the site was verified as merged and authored
-  by `anurag629` before it was listed.
-- Work in private repositories is described, never linked. No private
-  repository names appear anywhere in the build output.
-
-## Run it
+To preview locally:
 
 ```bash
-npm install
-npm run dev
+python3 -m http.server 3111 --directory site
 ```
 
-Open <http://localhost:3111>.
-
-```bash
-npm run build
-```
-
-`prebuild` fetches GitHub data and regenerates assets, then `next build`
-exports to `out/`. Set `GITHUB_TOKEN` to include the contribution calendar,
-which needs the GraphQL API — without it the build still succeeds and keeps the
-committed snapshot's numbers.
-
-```bash
-npm run check
-```
-
-Runs `tsc --noEmit` and `next lint`.
-
-## Structure
-
-```
-scripts/
-├── fetch-github.mjs      # build-time GitHub data → generated/github.json
-└── generate-assets.mjs   # OG image, favicons, llms.txt, sitemap
-src/
-├── app/
-│   ├── globals.css       # design tokens, both themes, focus + motion rules
-│   ├── layout.tsx        # fonts, metadata, JSON-LD
-│   └── page.tsx          # section order
-├── components/           # one file per section, plus Prompt / Reveal / Section / StatusBar
-└── data/
-    ├── profile.ts        # hand-written content
-    └── generated/        # fetched at build time
-```
+Then open <http://localhost:3111>.
 
 ## Deployment
 
-Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds and
-publishes `out/` to GitHub Pages.
+Pushes to `main` run `.github/workflows/deploy.yml`, which publishes the `site/` folder to GitHub Pages. There is no build step.
+
+## The old site
+
+The previous terminal style portfolio (Next.js) is kept on the [`archive/terminal-portfolio`](https://github.com/anurag629/anurag629.github.io/tree/archive/terminal-portfolio) branch.
 
 ## Licence
 

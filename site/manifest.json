@@ -1,11 +1,11 @@
 {
   "name": "Anurag Verma",
   "short_name": "Anurag Verma",
-  "description": "AI infrastructure engineer and founder. LLM gateways, agent memory, model routing.",
+  "description": "Links to connect with Anurag Verma.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0c10",
-  "theme_color": "#0a0c10",
+  "background_color": "#08090c",
+  "theme_color": "#08090c",
   "icons": [
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
